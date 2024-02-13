@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang = "es-419">
+    <title> Laboratorio 1</title>
+    <main>
+        <header> <h1>Laboratorio 1: Introducción a las aplicaciones web, HTML5 y ciclo de vida de los sistemas de información </h1>
+            <p> Nombre: Jesús Alejandro Cedillo Zertuche </p>
+            <p>Matrícula: A01705442</p>
+            <p>Correo: a01705442@tec.mx</p>
+        </header>
+        <section> <h2>Datos básicos sobre Jesús</h2>
+            <p>Hola! Soy Jesús Cedillo y me encanta lo que estoy estudiando. Otra de mis pasiones es las películas, series,
+                y en general una buena historia. Me fascinan los plot twists y la ciencia ficción, me asombra los niveles a los que 
+                puede llegar la creatividad humana para contar historias increíbles, que me imersen y me pierdo en su mundo. 
+                Actualmente soy fan de Star Wars, Marvel, DC y en general los superheroes. Sé que no es mucho pero espero de esa forma,
+                me puedas conocer mejor profe :)
+            </p>
+            <p>¿Te gustan los superheroes?
+                <input type="checkbox" id = "Yes">
+                <label for="Yes">Sí</label>
+            </p>
+        </section>
+        <section> <h2>Preguntas a contestar:</h2>
+            <article> <h3>¿Cuál es la diferencia entre Internet y la World Wide Web?</h3>
+                <p> De acuerdo a la BBC (2019), el Internet es una red de computadoras que estan conectadas 
+                    entre sí. La web es una colección de páginas que se asienta sobre esa red de 
+                    computadoras</p>
+                <a href = "https://www.bbc.com/mundo/noticias-47538812#:~:text=Internet%20es%20una%20inmensa%20red,para%20acceder%20a%20la%20web."> Referencia </a>
+            </article>
+            <article> <h3>¿Cuáles son las partes de un URL?</h3>
+                <p>Una página web primero tiene el protocolo (por ejemplo http) o esquema. HTTPS incluye un cifrado</p>
+                <p>Despúes está el subdominio. Este determina qué contenido mostrar, el más común es www, pero existen otros como blog. </p>
+                <p>El dominio de segundo nivel se pone el nombre de tu empresa</p>
+                <p>El dominio de nivel superior indica que tipo de organización tienes (puede ser gov, edu, org, etc).</p>
+                <p>También existe la ruta, que dicta qué página específica abrir del sitio web.</p>
+                <p>Despúes puede estar el documento que se encuentra en esa ruta (en páginas estáticas)</p>
+                <p>Si se puede hacer una consulta, esta se representa con un signo de interrogación. También se le pueden poner parámetros.</p>
+                <a href ="https://mailchimp.com/es/resources/parts-of-a-url/"> Referencia </a>
+            </article>
+            <article> <h3>¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PUT, PATCH, DELETE?</h3>
+                <p>El método GET es una petición a un recurso específico al servidor. No se pueden enviar datos.</p>
+                <p>Con POST se pueden enviar datos al servidor por medio del cuerpo</p>
+                <p>Es parecido al POST, pero siempre realiza la misma acción. Un post publica encima, es como la inserción de un nuevo registro.</p>
+                <p>DELETE puedes eliminar un recurso específico.</p>
+                <p>Es similar al PUT, ya que actualiza la parte de un registro. Son modificaciones parciales</p>
+                <p>El HEAD como el GET pero no regresa ningún contenido. Solo se quiere saber el código HTTP de respuesta.</p>
+                <a href="https://estilow3b.com/metodos-http-post-get-put-delete/"> Referencia</a>
+            </article>
+            <article> <h3>¿Qué método HTTP se debe utilizar al enviar un formulario HTML, por ejemplo cuando ingresas tu usuario y contraseña en algún sitio? ¿Por qué?</h3>
+                <p>Hay dos formas de enviar un formulario. Con GET, los valores que se envian son visibles en URL, donde con POST se envian en encabezados HTTP y no so0n visibles.
+                    Todos los datos confidenciales se deben de enviar de esta forma.
+                </p>
+                <a href="https://www.freecodecamp.org/espanol/news/formulario-html-ejemplos-de-tipo-de-entrada-y-boton-de-envio/">Referencia</a>
+            </article>
+            <article> <h3>¿Qué método HTTP se utiliza cuando a través de un navegador web se accede a una página a través de un URL?</h3>
+                <p>Se utiliza el método GET, ya que se está sacando la información a través del servidor</p>
+            </article>
+            <article> <h3>Un servidor web devuelve una respuesta HTTP con código 200. ¿Qué significa esto? ¿Ocurrió algún error?</h3>
+                <p>EL código 200 signfica "All ok", por lo que todo esta bién y no ocurrió ningún error.</p>
+                <a href="https://kinsta.com/es/blog/codigos-de-estado-de-http/#:~:text=200%3A%20%C2%ABTodo%20est%C3%A1%20bien%C2%BB,ha%20creado%20un%20nuevo%20recurso.">Referencia</a>
+            </article>
+            <article> <h3>¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 404? ¿Por qué?</h3>
+                <p>Si es responsabilidad del desarrollador, ya que lo que pasó fue que se buscó la página pero como no se encontró, se devuelve ese error. 
+                    Cuando se corriga y se suba la página al servidor, ya no va a aparecer el error. El usuario no tiene control sobre esto.</p>
+                <a href="https://kinsta.com/es/blog/codigos-de-estado-de-http/#:~:text=200%3A%20%C2%ABTodo%20est%C3%A1%20bien%C2%BB,ha%20creado%20un%20nuevo%20recurso.">Referencia</a>
+            </article> 
+            <article> <h3>¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 500? ¿Por qué?</h3>
+                <p>En este caso es un poco más complicado, porque significa que algo fallo con la conexión al servidor (como su base de datos). 
+                    Sin embargo, el desarrollador tiene que ver qué es lo que causo esa ruptura y corregir el error para que la página se despliege como debe ser. 
+                </p>
+                <a href="https://kinsta.com/es/blog/codigos-de-estado-de-http/#:~:text=200%3A%20%C2%ABTodo%20est%C3%A1%20bien%C2%BB,ha%20creado%20un%20nuevo%20recurso.">Referencia</a>
+            </article>
+            <article> <h3>¿Qué significa que un atributo HTML5 esté depreciado o desaprobado (deprecated)? Menciona algunos elementos de HTML 4 que en HTML5 estén desaprobados.</h3>
+                <p>El desarrollo web va evolucionando, y es por esto que se esta migrando del HTML4 al HTML5. El HTML5 tiene ciertos atributos nuevos, pero esto no 
+                    signfica que hayan quitado los de HTML4. Es por eso que estos atributos estan despreciados.
+                </p>
+                <p>Unos ejemplos de estos atributos son:</p>
+                <ul>
+                    <li>big (ahora se hace con CSS)</li>
+                    <li>center (ahora se hace con CSS)</li>
+                    <li>dir (ahora se usa ul)</li>
+                    <li>hgroup (se usa header o div)</li>
+                </ul>
+                <a href="https://www.tokioschool.com/noticias/etiquetas-obsoletas-html5/">Referencia</a>
+            </article>
+            <article> <h3>¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</h3>
+                <p>Las principales diferencias entre HTML4 y HTML5 son las siguientes:</p>
+                <ul>
+                    <li>Gestiona de mejor forma los errores</li>
+                    <li>Soporte para tener aplicaciones web modernas como Netflix en vez de usar Javascript u otros métodos.</li>
+                    <li>Semántica mejorada para que se lea mucho más claro</li>
+                    <li>Mejoras para los celulares, ya que antes no existían celulares donde se podía ver una página web</li>
+                    <li>Soporte de vídeo y audio</li>
+                    <li>Entre otras cosas más</li>
+                </ul>
+                <a href="https://es.bitdegree.org/tutoriales/codigo-html/">Referencia</a>
+            </article>
+            <article> <h3>¿Qué componentes de estructura y estilo tiene una tabla?</h3>
+                <p>Una tabla puede ser considerada, resumidamente, como un grupo de filas donde cada una contiene a un grupo de celdas.</p>
+                <p>La tabla se crea con componentes como "table", "tr" representa la fila y "td" la celda de la tabla</p>
+                <a href="https://www.htmlquick.com/es/tutorials/tables.html">Referencia</a>
+            </article>
+            <article> <h3>¿Cuáles son los principales controles de una forma HTML5?</h3>
+                <p>En HTML5 se agregaron componentes muchos componentes que hacen una forma más cómoda. Estos componentes incluyen a:</p>
+                <ul>
+                    <li>Ya existían diferentes tipos de input, pero se agregaron elementos como button, url, color, etc. Lo que más se agregó fueron los tipos de input, a hacerlo más amigable para el usuario.</li>
+                    <li>Se introdujo el placeholder que se usa en ves del value, para que el usuario no tenga que borrar lo que vaya a escribir.</li>
+                </ul>
+                <a href="https://www.mclibre.org/consultar/htmlcss/html/html-formularios.html#:~:text=En%20HTML%205%20se%20a%C3%B1adieron%20los%20controles%3A%20bot%C3%B3n%20general%20%3Cinput,%3Cinput%20type%3D%22color%22">Referencia</a>
+            </article>
+            <article> <h3>¿Qué tanto soporte HTML5 tiene el navegador que utilizas?</h3>
+                <p>Yo uso Chrome en una Mac que tiene Sonoma instalado.</p>
+                <p>De acuerdo a https://html5test.co/, tengo 581 de 594, o sea un 97.8%. Eso significa que tiene bastante buen suporte.</p>
+                <a href="https://html5test.co/">Referencia</a>
+            </article>
+        </section>
+        <section> <h2> Ciclo de vida de desarrollo</h2>
+            <article> <h3>¿Cuál es el ciclo de vida de los sistemas de información? </h3>
+                <p>Su ciclo de vida se encuentea delimitado por lo siguiente:</p>
+                <ul>
+                    <li>Planificación</li>
+                    <li>Análisis</li>
+                    <li>Diseño</li>
+                    <li>Implementación</li>
+                    <li>Pruebas</li>
+                    <li>Instalación</li>
+                    <li>Uso y Mantenimiento</li>
+                </ul>
+                <a href="https://gestiopolis.com/ciclo-de-vida-de-un-sistema-de-informacion/">Referencia</a>
+            </article>
+        </section>
+    </main>
+        <footer>
+           <p> <a href = "https://code.visualstudio.com/"> El editor que use es Visual Studio Code</a> </p>
+        </footer>
+</html>
