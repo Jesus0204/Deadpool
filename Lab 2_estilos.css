@@ -1,0 +1,20 @@
+/* Selector de etiqueta */
+body {
+    font-family: Verdana;
+}
+
+header {
+    color: white;
+    background-color: goldenrod;
+    text-align: center;
+}
+
+/* Selector de clase */
+.blue {
+    color: rgb(23, 92, 221);
+}
+
+/* Selector de id */
+#background_form {
+    color: green;
+}
