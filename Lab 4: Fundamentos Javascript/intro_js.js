@@ -65,3 +65,56 @@ const desayuno = (comida) => {
 };
 
 desayuno("huevitos");
+
+// arreglos
+
+// Se pueden modificar los contenidos del arreglo, pero la direccion de memoria es la constante
+const arreglo = ["Elemento"];
+const arreglo_2 = new Array();
+
+// Son arreglos dinámicos
+arreglo.push("Otro elemento");
+arreglo.push(5);
+
+console.log(arreglo);
+
+// Se agrega solo y creo elemento vacíos para llenar lo demás
+arreglo[10] = "Uno más";
+
+// arreglos asociativos
+
+// Es un diccionario. Lo pone al final
+arreglo["dos"] = 8;
+
+console.log(arreglo);
+
+// recorrido tradicional del arreglo
+for (let i = 0; i < arreglo.length; i++){
+    console.log(arreglo[i]);
+}
+
+// recorridos alternativos del arreglo
+// Imprime los indices del arreglo
+for (let posicion in arreglo) {
+    console.log(posicion);
+}
+
+// Imprime elementos del arreglo
+for (let posicion of arreglo) {
+    console.log(posicion);
+}
+
+// Objetos
+
+const objeto = {atributo: "valor", atributo2: "valor2"};
+objeto.atributo3 = 5;
+console.log(objeto);
+
+for (let atributo in objeto){
+    console.log(atributo);
+}
+
+// Modificar html
+
+// Solo por mientras modifica el html
+// document.write("Hola");
