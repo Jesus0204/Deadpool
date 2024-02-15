@@ -24,3 +24,21 @@ const precio = 50;
 
 // Forma moderna y segura de declarar variable
 let cantidad = 1;
+
+// alert, prompt, confirm
+alert("Hola");
+
+// Le pregunta algo al usuario
+const nombre = prompt("¿Como te llamas?");
+console.log("Hola " + nombre);
+
+// Para cosas de true o false y le pregunta al usuario
+const hambre = confirm("¿Tienes hambre?");
+if (hambre){
+    console.log("Es hora de desayunar");
+}
+else {
+    console.log("Sigamos trabajando");
+}
+
+// El tripe igual === te compara el valor y el tipo de dato 
