@@ -42,3 +42,26 @@ else {
 }
 
 // El tripe igual === te compara el valor y el tipo de dato 
+
+// funciones tradicionales
+function disparar() {
+    console.log("Disparar al villano");
+}
+
+disparar();
+
+// funciones modernas
+
+// Esta es una constante que guarda la funcion
+const disparo = () => {
+    console.log("Disparando a un henchmen anónimo");
+};
+
+// La variable se puede usar como funcion
+disparo();
+
+const desayuno = (comida) => {
+    console.log("El desayuno de hoy es " + comida);
+};
+
+desayuno("huevitos");
