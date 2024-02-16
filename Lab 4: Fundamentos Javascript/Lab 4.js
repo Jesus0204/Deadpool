@@ -91,3 +91,21 @@ document.write("<p>La función de promedio dice que hay " + "<code>[" + arreglo_
 
 //Ejercicio 5: Inverso
 document.write("</article><article> <h3>Inverso</h3>"); 
+
+const inverso = (num) => {
+    let length_i = num.length;
+    let inv_res = "";
+    for (i = length_i - 1; i >= 0; i--){
+        inv_res += num[i];
+    }
+    return inv_res;
+}
+
+let inverse_num = "75341";
+const inverse_answer = inverso(inverse_num);
+
+document.write("<p>Teniendo el siguiente número: <code>75341</code></p>");
+document.write("<p>El inverso de ese número es: 14357 </p>");
+document.write("<p>La función de inverso dice que el inverso del numero es " + inverse_answer + "</p>");
+document.write("<p>Se utilizó 'console.assert(14357 == inverse_answer)' para verificar esto. </p>");
+console.assert(14357 == inverse_answer);
