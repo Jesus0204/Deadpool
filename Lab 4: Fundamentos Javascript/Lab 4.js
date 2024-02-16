@@ -34,5 +34,35 @@ else {
 // Ejercicio 3: Contador
 document.write("</article><article> <h3>Contador</h3>"); 
 
+const contador = (arreglo) => {
+    let cont_0 = 0;
+    let cont_pos = 0;
+    let cont_neg = 0;
+    for (let i in arreglo_num){
+        if (arreglo_num[i] > 0){
+            cont_pos += 1;
+        }
+        else if (arreglo_num[i] == 0){
+            cont_0 += 1;
+        }
+        else {
+            cont_neg += 1;
+        }
+    }
+    return (cont_pos + " " + cont_neg + " " + cont_0);
+};
+
+const arreglo_num = [23, -2, 0, 4, 98, -42, 0, -3, -2, -6, 0, 2, 6, 7];
+const answer = contador(arreglo_num);
+
+document.write("<p>Teniendo el siguiente arreglo: </p>");
+document.write("<code> [23, -2, 0, 4, 98, -42, 0, -3, -2, -6, 0, 2, 6, 7] </code>");
+document.write("<p>Debería de haber 6 números positivos, 5 negativos, y 3 que son cero.</p>")
+document.write("<p>La función de contador dice que hay " + answer + "</p>");
+document.write("<p>Se utilizó 'console.assert(answer == 6 + ' ' + 5 + ' ' + 3) para verificar esto. </p>");
+console.assert(answer == (6 + " " + 5 + " " + 3));
+
+// Ejercicio 4: Promedios
+document.write("</article><article> <h3>Promedios en una matríz</h3>"); 
 
 
