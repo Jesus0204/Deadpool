@@ -59,10 +59,35 @@ document.write("<p>Teniendo el siguiente arreglo: </p>");
 document.write("<code> [23, -2, 0, 4, 98, -42, 0, -3, -2, -6, 0, 2, 6, 7] </code>");
 document.write("<p>Debería de haber 6 números positivos, 5 negativos, y 3 que son cero.</p>")
 document.write("<p>La función de contador dice que hay " + answer + "</p>");
-document.write("<p>Se utilizó 'console.assert(answer == 6 + ' ' + 5 + ' ' + 3) para verificar esto. </p>");
+document.write("<p>Se utilizó 'console.assert(answer == 6 + ' ' + 5 + ' ' + 3)' para verificar esto. </p>");
 console.assert(answer == (6 + " " + 5 + " " + 3));
 
 // Ejercicio 4: Promedios
 document.write("</article><article> <h3>Promedios en una matríz</h3>"); 
 
+const promedio = (matriz) => {
+    arreglo_respuesta = [];
+    for (i in matriz){
+        let sum_renglon = 0;
+        let count = 0;
+        for (j in matriz[i]){
+            sum_renglon += matriz[i][j];
+            count += 1;
+        }
+        arreglo_respuesta.push(sum_renglon/count);
+    }
+    return arreglo_respuesta;
+}
 
+const matriz = [ [2, 65, 54, 25, 43], [6, 42, 94, 3], [4, 541, 1, 46, 2, 3, 5, 7] ];
+const arreglo_res = promedio(matriz);
+
+document.write("<p>Teniendo el siguiente arreglo: </p>");
+document.write("<code> [ [2, 65, 54, 25, 43], [6, 42, 94, 3], [4, 541, 1, 46, 2, 3, 5, 7] ] </code>");
+document.write("<p>El promedio del primer renglón de la matriz debe ser 37.8.</p>")
+document.write("<p>El promedio del segundo renglón de la matriz debe ser 36.25.</p>")
+document.write("<p>El promedio del tercer renglón de la matriz debe ser 76.125.</p>")
+document.write("<p>La función de promedio dice que hay " + "<code>[" + arreglo_res + "]</code>" + "</p>");
+
+//Ejercicio 5: Inverso
+document.write("</article><article> <h3>Inverso</h3>"); 
