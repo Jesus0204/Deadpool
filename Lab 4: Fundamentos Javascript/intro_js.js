@@ -1,3 +1,5 @@
+// El script siempre al final para que no haya errores
+
 // Con esto se imprime 
 console.log("hola");
 
