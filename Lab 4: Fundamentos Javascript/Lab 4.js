@@ -109,3 +109,36 @@ document.write("<p>El inverso de ese número es: 14357 </p>");
 document.write("<p>La función de inverso dice que el inverso del numero es " + inverse_answer + "</p>");
 document.write("<p>Se utilizó 'console.assert(14357 == inverse_answer)' para verificar esto. </p>");
 console.assert(14357 == inverse_answer);
+
+// Ejercicio 6: Problema propio
+document.write("</article><article> <h3>Problema Propio</h3>"); 
+document.write("<p>Para aprender a utilizar objetos, voy a crear la clase de rectángulo, para así calcular su perímetro y su area en base a su base y altura. </p>");
+
+// Aquí se crea la clase con su constructor
+class Rectangulo {
+    constructor(base_input, altura_input) {
+        this.base = base_input;
+        this.altura = altura_input;
+    }
+    area(){
+        return (this.base * this.altura);
+    }
+
+    perimetro(){
+        return ((2 * this.base) + (2 * this.altura));
+    }
+}
+
+// Creación de 2 objetos
+const rectangulo_1 = new Rectangulo(4, 5);
+const rectangulo_2 = new Rectangulo(3, 6);
+
+document.write("<p>El primer rectángulo tiene una base de 4 y altura de 5. </p>");
+document.write("<p>El área del primer rectángulo es: " + rectangulo_1.area() + "</p>");
+document.write("<p>El perímetro del primer rectángulo es: " + rectangulo_1.perimetro() + "</p>");
+document.write("<br>")
+document.write("<p>El segundo rectángulo tiene una base de 3 y altura de 6. </p>");
+document.write("<p>El área del segundo rectángulo es: " + rectangulo_2.area() + "</p>");
+document.write("<p>El perímetro del segundo rectángulo es: " + rectangulo_2.perimetro() + "</p>");
+
+document.write("</article>"); 
