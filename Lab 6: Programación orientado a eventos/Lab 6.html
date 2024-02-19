@@ -56,12 +56,13 @@
   </section>
   <section class="section">
     <div class="container">
-        <p class="has-text-danger-dark">¡Bienvenido a esta pagina para validad passwords! ¡Por favor entra! Y no le des click a cualquier boton si no quieres averiguar los resultados</p>
+        <p id="paragraph" class="has-text-danger-dark"> <i title ="Escribe en los campos las contraseñas para validarlas." class="fa-solid fa-circle-info"></i> 
+            ¡Bienvenido a esta pagina para validar passwords! ¡Por favor entra! Y no le des click a cualquier boton si no quieres averiguar los resultados</p>
         <br>
             <div class ="field">
                 <label class="label">Password</label>
-                <p class="control has-icons-left"">
-                    <input class="input is-primary is-rounded" type="password" placeholder="Escribe tu contraseña">
+                <p class="control has-icons-left">
+                    <input id="password_1" class="input is-primary is-rounded" type="password" placeholder="Escribe tu contraseña">
                     <span class="icon is-small is-left">
                         <i class="fas fa-lock"></i>
                     </span>
@@ -69,8 +70,8 @@
             </div>
             <div class ="field">
                 <label class="label">Verificación de password</label>
-                <p class="control has-icons-left"">
-                    <input class="input is-primary is-rounded" type="password" placeholder="Escribe tu contraseña de nuevo para validarla">
+                <p class="control has-icons-left">
+                    <input id="password_2" class="input is-primary is-rounded" type="password" placeholder="Escribe tu contraseña de nuevo para validarla">
                     <span class="icon is-small is-left">
                         <i class="fas fa-lock"></i>
                     </span>
@@ -78,11 +79,18 @@
             </div>
             <div class="field is-grouped">
                 <div class="control">
-                  <button class="button is-link">Validar Password</button>
+                  <button id="boton_validar" class="button is-link">Validar Password</button>
                 </div>
                 <div class="control">
                   <button id="boton_cancel" class="button is-link is-light">Cancelar</button>
                 </div>
+    </div>
+    <br>
+    <div class="container">
+        <h1 class="title">Referencias</h1>
+        <p>Bulma. (s.f.). Bulma: the modern CSS framework that just works. <a href="https://bulma.io/">https://bulma.io/</a></p>
+        <p>Font Awesome. (s.f.). Find icons with Font Awesome. <a href="https://fontawesome.com/">https://fontawesome.com/</a> </p>
+        <p> W3 Docs. (s.f.). How to Add a Mouseover Text with HTML. <a href="https://www.w3docs.com/snippets/html/how-to-add-a-mouseover-text-with-html.html">https://www.w3docs.com/snippets/html/how-to-add-a-mouseover-text-with-html.html</a></p>
     </div>
   </section>
   <footer class="footer">
