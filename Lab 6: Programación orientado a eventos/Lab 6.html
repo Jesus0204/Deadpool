@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laboratorio 6: Programacion orientada a eventos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Aquí se usan los íconos de font awesome  -->
+    <script src="https://kit.fontawesome.com/98026b1a47.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -22,23 +24,20 @@
       
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item">
-              Home
+            <a id="boton_casa" class="navbar-item">
+              Esta es mi casa
             </a>
       
             <a class="navbar-item">
-              Documentation
+              Y este es un nav item que no hace nada
             </a>
           </div>
       
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a class="button is-light">
-                  Log in
+                <a id="boton_disparar" class="button is-primary">
+                  <strong>Disparar Enemigo</strong>
                 </a>
               </div>
             </div>
@@ -49,13 +48,43 @@
     <div class="container">
       <h1 class="title">Hello there</h1>
       <div class="block">
-        <figure class="image is-128x128">
+        <figure>
             <img id="imagen_disparar" src="https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/02/1484222978-deadpool.jpg?resize=1200:*">
         </figure>
       </div>
-      <div>
-        <button id="boton_disparar" class="button is-primary">Disparar enemigo</button>
     </div>
+  </section>
+  <section class="section">
+    <div class="container">
+        <p class="has-text-danger-dark">¡Bienvenido a esta pagina para validad passwords! ¡Por favor entra! Y no le des click a cualquier boton si no quieres averiguar los resultados</p>
+        <br>
+        <form>
+            <div class ="field">
+                <label class="label">Password</label>
+                <p class="control has-icons-left"">
+                    <input class="input is-primary is-rounded" type="password" placeholder="Escribe tu contraseña">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </p>
+            </div>
+            <div class ="field">
+                <label class="label">Verificación de password</label>
+                <p class="control has-icons-left"">
+                    <input class="input is-primary is-rounded" type="password" placeholder="Escribe tu contraseña de nuevo para validarla">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link">Validar Password</button>
+                </div>
+                <div class="control">
+                  <button class="button is-link is-light">Cancelar</button>
+                </div>
+        </form>
     </div>
   </section>
   <footer class="footer">
