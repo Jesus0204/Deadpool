@@ -22,7 +22,7 @@ const validar_pass = () => {
 
     const paragraph = document.getElementById("paragraph");
 
-    if (password_1_value == password_2_value) {
+    if ((password_1_value == password_2_value) && password_1_value != "") {
         paragraph.innerHTML = "¡La contraseña es correcta!";
         paragraph.className = "has-text-success";
     }
