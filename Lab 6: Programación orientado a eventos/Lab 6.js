@@ -66,11 +66,25 @@ function seguridad(pass_value) {
     if (pass_value.length <= 7){
         return false;
     }
+
     // Números
     const numeros = /[0-9]/;
-    if (numeros.test(pass_value) == true){
-        return true;
+    if (numeros.test(pass_value) == false){
+        return false;
     }
+
+    // Mayusculas y minisculas
+    const mayusculas = /[A-Z]/;
+    const minisculas = /[a-z]/;
+    if (mayusculas.test(pass_value) == false){
+        return false;
+    }
+    if (minisculas.test(pass_value) == false){
+        return false;
+    }
+    // Regresa True si todo lo anterior es cierto
+    return true;
+
 }
 
 password_1.onkeyup = validacion_caracteres;
