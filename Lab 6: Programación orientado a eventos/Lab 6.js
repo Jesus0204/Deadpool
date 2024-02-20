@@ -6,7 +6,6 @@ const cancelar = () => {
 
     const title = document.getElementById("title");
     title.innerHTML = "¿Porque lo cancelas bro? ¡Usa el validador!";
-    title.className = "is-size-1 is-family-sans-serif";
 }
 
 cancel.onclick = cancelar;
@@ -33,3 +32,7 @@ const validar_pass = () => {
 }
 
 validar.onclick = validar_pass;
+
+const hover = document.getElementById("title");
+
+hover.onmouseover = "<img ";
