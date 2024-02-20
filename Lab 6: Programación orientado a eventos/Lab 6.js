@@ -1,4 +1,6 @@
-const cancel = document.getElementById("boton_cancel")
+const cancel = document.getElementById("boton_cancel");
+const validar_dis = document.getElementById("boton_validar");
+validar_dis.disabled = true;
 
 const cancelar = () => {
     const imagen = document.getElementById("imagen_disparar");
@@ -54,10 +56,12 @@ const validacion_caracteres = () => {
     const pass_value = password_1.value;
 
     if (seguridad(pass_value) == false){
+        validar_dis.disabled = true;
         hidden.classList.remove("is-hidden");
     }
     else if (seguridad(pass_value) == true){
         hidden.classList.add("is-hidden");
+        validar_dis.disabled = false;
     }
 }
 
