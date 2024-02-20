@@ -53,15 +53,19 @@ const password_1 = document.getElementById("password_1");
 
 const validacion_caracteres = () => {
     const hidden = document.getElementById("hidden_text");
+    const hidden_2 = document.getElementById("hidden_text_2");
     const pass_value = password_1.value;
 
     if (seguridad(pass_value) == false){
         validar_dis.disabled = true;
         hidden.classList.remove("is-hidden");
+        hidden_2.classList.add("is-hidden");
     }
     else if (seguridad(pass_value) == true){
         hidden.classList.add("is-hidden");
         validar_dis.disabled = false;
+        hidden_2.classList.remove("is-hidden");
+
     }
 }
 
