@@ -82,6 +82,13 @@ function seguridad(pass_value) {
     if (minisculas.test(pass_value) == false){
         return false;
     }
+
+    // Caracteres especiales
+    const caracteres_especiales = /[!@#$%^&*()_+{}\[\]:;<>,.?~]/;
+    if (caracteres_especiales.test(pass_value) == false) {
+        return false;
+    }
+
     // Regresa True si todo lo anterior es cierto
     return true;
 
