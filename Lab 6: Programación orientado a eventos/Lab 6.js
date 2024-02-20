@@ -46,3 +46,19 @@ const dehover_function = () => {
 
 hover.onmouseover = hover_function;
 hover.onmouseout = dehover_function;
+
+const password_1 = document.getElementById("password_1");
+
+const validacion_caracteres = () => {
+    const hidden = document.getElementById("hidden_text");
+    const pass_value = password_1.value;
+
+    if (pass_value.length <= 7){
+        hidden.classList.remove("is-hidden");
+    }
+    else if (pass_value.length > 6){
+        hidden.classList.add("is-hidden");
+    }
+}
+
+password_1.onkeyup = validacion_caracteres;
