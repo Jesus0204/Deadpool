@@ -33,6 +33,16 @@ const validar_pass = () => {
 
 validar.onclick = validar_pass;
 
-const hover = document.getElementById("title");
+const hover = document.getElementById("paragraph_hover");
 
-hover.onmouseover = "<img ";
+const hover_function = () => {
+    hover.innerHTML = "<img src='https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExczloMDB6aWVsY3hxdWUyY21oaHBpbHN2NWoybTJvaG45M2U0aXh5cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gFPylNbLqc8bbHtYvJ/giphy.gif' ";
+}
+
+const dehover_function = () => {
+    hover.className = "has-text-danger-dark";
+    hover.innerHTML = "¡Este parráfo es mágico!";
+}
+
+hover.onmouseover = hover_function;
+hover.onmouseout = dehover_function;
