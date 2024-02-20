@@ -53,11 +53,23 @@ const validacion_caracteres = () => {
     const hidden = document.getElementById("hidden_text");
     const pass_value = password_1.value;
 
-    if (pass_value.length <= 7){
+    if (seguridad(pass_value) == false){
         hidden.classList.remove("is-hidden");
     }
-    else if (pass_value.length > 6){
+    else if (seguridad(pass_value) == true){
         hidden.classList.add("is-hidden");
+    }
+}
+
+function seguridad(pass_value) {
+    // Length de password
+    if (pass_value.length <= 7){
+        return false;
+    }
+    // Números
+    const numeros = /[0-9]/;
+    if (numeros.test(pass_value) == true){
+        return true;
     }
 }
 
