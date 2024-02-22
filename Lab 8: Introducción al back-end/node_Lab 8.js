@@ -1,17 +1,22 @@
+// Ejercicio 1
+const arreglo = [8, 55, 7, -3, 0.75, 17.05, 4, 85, 92, 48, 13, 983, 555555];
+
+let prom = 0;
+let count = 0;
+for (let i = 0; i < arreglo.length; i++){
+    prom += arreglo[i];
+    count += 1;
+}
+const promedio = prom / count;
+console.log("El promedio es " + promedio);
+
+// Ejercicio 2
 const filesystem = require('fs');
 // Escribe el string segundo parámetro en el archivo indicado en el primer paramétro
 filesystem.writeFileSync("hola.txt", "Hola desde node");
 
-const arreglo = [8, 55, 7, -3, 0.75, 17.05, 4, 85, 92, 48, 13, 983, 555555];
-
-let prom = 0;
-for (let i = 0; i < arreglo.length; i++){
-    prom += arreglo[i];
-}
-console.log("El promedio es" + prom);
-
+// Petición al servidor local
 const http = require("http");
-
 // Creas el servidor con create server
 const server = http.createServer( (request, response) => {
     // Imprime el url que pidio el usuario con el servidor (cuando busca localhost:3000)
