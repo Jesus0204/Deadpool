@@ -16,4 +16,9 @@ for (let item of arreglo){
     setTimeout(() => {
         console.log(item);
     }, item);
-}
+};
+
+/* Mete lo anterior a la pila y esto se escribe al principio, por que lo demás 
+  esta como "pending". A esto se refiere asincrono. Como no tiene un tiempo en el que 
+  se tiene que ejecutar, se pone antes que todo lo demás. */
+console.log("Esto se escribe antes de los números");
