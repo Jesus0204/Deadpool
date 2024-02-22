@@ -1,5 +1,5 @@
 // Ejercicio 1
-const arreglo = [8, 55, 7, -3, 0.75, 17.05, 4, 85, 92, 48, 13, 983, 555555];
+const arreglo = [8, 55, 7, -3, 0.75, 17.05, 666777, 4, 555555, 85, 92, 48, 13, 983];
 
 let prom = 0;
 let count = 0;
@@ -12,8 +12,27 @@ console.log("El promedio es " + promedio);
 
 // Ejercicio 2
 const filesystem = require('fs');
-// Escribe el string segundo parámetro en el archivo indicado en el primer paramétro
-filesystem.writeFileSync("hola.txt", "Hola desde node");
+
+filesystem.writeFileSync("Hola.txt", "¡Esto funciona y esta en un archivo de texto!");
+
+// Ejercicio 3 (máximo)
+const maximo = (arreglo_max) => {
+  let max = arreglo_max[0];
+  // Se recorre el arreglo buscando el número máximo
+  for (let i = 0; i < arreglo_max.length; i++){
+    // Si el siguiente número es más grande se sobreescribe
+    if (max < arreglo_max[i]){
+      max = arreglo_max[i];
+    }
+  }
+  // Regresas ese numero
+  return max;
+};
+
+// Imprimes el resultado en la consola llamando la función
+const answer = maximo(arreglo);
+console.log("El número más grande del arreglo es: " + answer);
+
 
 // Petición al servidor local
 const http = require("http");
