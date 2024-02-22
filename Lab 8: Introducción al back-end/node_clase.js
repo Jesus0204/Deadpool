@@ -41,7 +41,7 @@ const server = http.createServer( (request, response) => {
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laboratorio 6: Programacion orientada a eventos</title>
+        <title>¡¡Laboratorio 8: Respuesta de un servidor!!!</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
         <!-- Aquí se usan los íconos de font awesome  -->
         <script src="https://kit.fontawesome.com/98026b1a47.js" crossorigin="anonymous"></script>
