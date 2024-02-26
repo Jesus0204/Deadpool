@@ -39,6 +39,10 @@ const header = `
                 <a class="navbar-item" href="/wolverine">
                   Enviar mensaje a Wolverine
                 </a>
+
+                <a class="navbar-item" href="/deadpool!">
+                  Deadpool!
+                </a>
               </div>
           
               <div class="navbar-end">
@@ -168,6 +172,7 @@ const server = http.createServer( (request, response) => {
         // Envía la respuesta del servidor
         response.end();
     } else if (request.url == "/wolverine" && request.method == "GET") {
+        response.setHeader("Content-Type", "text/html");
         response.write(header);
         response.write(`
           <section class="section">
@@ -215,6 +220,21 @@ const server = http.createServer( (request, response) => {
             return response.end();
         });
 
+    } else if (request.url == '/deadpool!'){
+        response.write(header);
+        response.write(`
+          <section class="section">
+            <div class="container">
+              <h1 id="title" class="title">Deadpool!</h1>
+              <div class="block">
+                <figure>
+                    <img id="imagen_disparar" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1_5x/sources/r1/cms/prod/old_images/MOVIE/3257/1770003257/1770003257-h">
+                </figure>
+              </div>
+              <div class="columns">
+          `);
+        response.write(footer);
+        response.end();
     } else {
         // Regresas el error 404 (código de respuesta para recurso no encontrado)
         response.statusCode = 404;
