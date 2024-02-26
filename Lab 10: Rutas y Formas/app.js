@@ -55,6 +55,8 @@ const header = `
           `;
 
 const footer = `
+    </div>
+    </section>
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
@@ -114,6 +116,9 @@ const footer = `
     </html>
     `;
 
+// El arreglo donde se va a guardar lo que inserta el usuario
+const messages = [{titulo: "¡¿Help?!", mensaje: "Don't just stand there you ape! Get over here and give me a hand!"}];
+
 // Creas el servidor con create server
 const server = http.createServer( (request, response) => {
     console.log(request.url);
@@ -131,9 +136,34 @@ const server = http.createServer( (request, response) => {
                     <img id="imagen_disparar" src="https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/02/1484222978-deadpool.jpg?resize=1200:*">
                 </figure>
               </div>
-            </div>
-          </section>
+              <div class="columns">
           `);
+
+        let tarjetas_mensajes = '';
+        for(let mensaje of messages) {
+            tarjetas_mensajes += `
+              <div class="column">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                          <p class="title is-4">${mensaje.titulo}</p>
+                          <p class="subtitle is-6">@Deadp00l!</p>
+                        </div>
+                      </div>
+                  
+                      <div class="content">
+                        ${mensaje.mensaje}
+                        <br>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        `;}
+
+        response.write(tarjetas_mensajes);
+        response.write(`</div>`);
         response.write(footer);
         // Envía la respuesta del servidor
         response.end();
@@ -172,12 +202,17 @@ const server = http.createServer( (request, response) => {
 
         // Cuando acabo de tener los datos, los conviertes de ASCII a string y lo imprimes en consola
         return request.on('end', () => {
+            // Concatenar los datos completos en una sola variable
             const datos_completos = Buffer.concat(datos).toString();
             console.log(datos_completos);
+            // Sacar la parte del título
             const titulo = datos_completos.split('&')[0].split('=')[1];
             console.log(titulo);
+            // Sacar la parte del mensaje
             const mensaje = datos_completos.split('&')[1].split('=')[1];
             console.log(mensaje);
+            // Agregas al arreglo los datos que el usuario inserto
+            messages.push({titulo: titulo, mensaje: mensaje});
             return response.end();
         });
 
@@ -191,6 +226,11 @@ const server = http.createServer( (request, response) => {
           <section class="section">
             <div class="container">
               <h1 id="title" class="title">Oops, no existe el enemigo que estas buscando</h1>
+                <div class="block">
+                  <figure>
+                    <img id="imagen_disparar" src="https://shirtoid.com/wp-content/uploads/2017/12/Oops.jpg">
+                   </figure>
+                </div>
             </div>
           </section>
           `);
