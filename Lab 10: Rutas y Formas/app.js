@@ -28,12 +28,17 @@ const header = `
           
             <div id="navbarBasicExample" class="navbar-menu">
               <div class="navbar-start">
+                <a class="navbar-item" href="/">
+                   Home
+                </a>
+
+              <div class="navbar-item">
                 <a id="boton_casa" class="navbar-item">
                   Esta es mi casa
                 </a>
           
-                <a class="navbar-item">
-                  Y este es un nav item que no hace nada
+                <a class="navbar-item" href="/wolverine">
+                  Enviar mensaje a Wolverine
                 </a>
               </div>
           
@@ -133,8 +138,45 @@ const server = http.createServer( (request, response) => {
         response.write(footer);
         // Envía la respuesta del servidor
         response.end();
-    } else if (request.url == "/deadpool") {
+    } else if (request.url == "/wolverine" && request.method == "GET") {
+        response.write(header);
+        response.write(`
+          <section class="section">
+            <div class="container">
+              <h1 id="title" class="title"> Envía un mensaje a nuestro bro Wolverine </h1>
+              <form action="/wolverine" method="POST">
+                <label class="label" for="titulo">Titulo de mensaje:</label>
+                <input name="titulo" class="input" type="text" id="titulo"><br>
+                <label class="label" for="mensaje">Mensaje para el broski:</label>
+                <input name="mensaje" class="input" type="text" id="mensaje"><br><br>
+                <input class="button is-success" type="submit" value="Enviar">
+              </form>
+              <figure>
+                    <img id="imagen_disparar" src="https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/02/1484222978-deadpool.jpg?resize=1200:*">
+                </figure>
+            </div>
+          </section>
+        `);
+        response.write(footer);
+        response.end();
+    } else if (request.url == "/wolverine" && request.method == "POST"){
         
+        const datos = [];
+        request.on('data', (dato) => {
+            console.log(dato);
+            datos.push(dato);
+        });
+
+        return request.on('end', () => {
+            const datos_completos = Buffer.concat(datos).toString();
+            console.log(datos_completos);
+            const titulo = datos_completos.split('&')[0].split('=')[1];
+            console.log(titulo);
+            const mensaje = datos_completos.split('&')[1].split('=')[1];
+            console.log(mensaje);
+            return response.end();
+        });
+
     } else {
         // Regresas el error 404 (código de respuesta para recurso no encontrado)
         response.statusCode = 404;
