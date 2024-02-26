@@ -117,7 +117,7 @@ const footer = `
     `;
 
 // El arreglo donde se va a guardar lo que inserta el usuario
-const messages = [{titulo: "¡¿Help?!", mensaje: "Don't just stand there you ape! Get over here and give me a hand!"}];
+const messages = [{titulo: "¡¿Help?!", mensaje: "Don't just stand there you ape! Get over here and give me a hand!", date: "Dom Feb 11, 2024"}];
 
 // Creas el servidor con create server
 const server = http.createServer( (request, response) => {
@@ -155,7 +155,7 @@ const server = http.createServer( (request, response) => {
                       <div class="content">
                         ${mensaje.mensaje}
                         <br>
-                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                        <time datetime="2016-1-1">${mensaje.date}</time>
                       </div>
                     </div>
                   </div>
@@ -207,12 +207,11 @@ const server = http.createServer( (request, response) => {
             console.log(datos_completos);
             // Sacar la parte del título
             const titulo = datos_completos.split('&')[0].split('=')[1];
-            console.log(titulo);
             // Sacar la parte del mensaje
             const mensaje = datos_completos.split('&')[1].split('=')[1];
-            console.log(mensaje);
             // Agregas al arreglo los datos que el usuario inserto
-            messages.push({titulo: titulo, mensaje: mensaje});
+            const currentDate = new Date().toDateString();
+            messages.push({titulo: titulo, mensaje: mensaje, date: currentDate});
             return response.end();
         });
 
