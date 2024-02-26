@@ -32,7 +32,6 @@ const header = `
                    Home
                 </a>
 
-              <div class="navbar-item">
                 <a id="boton_casa" class="navbar-item">
                   Esta es mi casa
                 </a>
@@ -151,9 +150,12 @@ const server = http.createServer( (request, response) => {
                 <input name="mensaje" class="input" type="text" id="mensaje"><br><br>
                 <input class="button is-success" type="submit" value="Enviar">
               </form>
+            </div>
+            <br>
+            <div class="block">
               <figure>
-                    <img id="imagen_disparar" src="https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/02/1484222978-deadpool.jpg?resize=1200:*">
-                </figure>
+                <img id="imagen_disparar" src="">
+              </figure>
             </div>
           </section>
         `);
@@ -161,12 +163,14 @@ const server = http.createServer( (request, response) => {
         response.end();
     } else if (request.url == "/wolverine" && request.method == "POST"){
         
+        // Cada vez que haya datos guardas los datos en el arreglo y los imprimes
         const datos = [];
         request.on('data', (dato) => {
             console.log(dato);
             datos.push(dato);
         });
 
+        // Cuando acabo de tener los datos, los conviertes de ASCII a string y lo imprimes en consola
         return request.on('end', () => {
             const datos_completos = Buffer.concat(datos).toString();
             console.log(datos_completos);
