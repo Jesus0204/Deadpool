@@ -1,6 +1,9 @@
 // Módulo de node con todas las funciones de un servidor web
 const http = require("http");
 
+// Incluir el filesystem para guardar el archivo
+const filesystem = require('fs');
+
 const header = `
     <!DOCTYPE html>
     <html>
@@ -217,6 +220,7 @@ const server = http.createServer( (request, response) => {
             // Agregas al arreglo los datos que el usuario inserto
             const currentDate = new Date().toDateString();
             messages.push({titulo: titulo, mensaje: mensaje, date: currentDate});
+            filesystem.writeFileSync("post.txt", "El titulo es: " + titulo + "\n" + "El mensaje es: " + mensaje);
             return response.end();
         });
 
