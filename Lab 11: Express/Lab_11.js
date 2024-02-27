@@ -12,84 +12,67 @@ const bodyParser = require('body-parser');
 // Configura bodyparser
 app.use(bodyParser.urlencoded({extended: false}));
 
+const messages = [{titulo: "¡¿Help?!", mensaje: "Don't just stand there you ape! Get over here and give me a hand!", date: "Dom Feb 11, 2024"}];
 
-//Middleware
-app.use((request, response, next) => {
-  console.log('Middleware!');
-  next(); //Le permite a la petición avanzar hacia el siguiente middleware
-});
-
-app.use('/deadpool!', (request, response, next) => {
-  console.log(request.body);
-  response.send('Respuesta de la ruta "/deadpool!"'); 
-});
-
-app.get('/', (request, response, next) => {
-  console.log('Ruta /');
-  response.send(`<!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>¡¡Lab 10: Rutaaas!!</title>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-      <!-- Aquí se usan los íconos de font awesome  -->
-      <script src="https://kit.fontawesome.com/98026b1a47.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-          <div class="navbar-brand">
-            <a class="navbar-item" href="http://localhost:3000/">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Deadpool_logo.jpg" width="112" height="28">
-            </a>
-        
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a>
-          </div>
-        
-          <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-              <a class="navbar-item" href="/">
-                 Home
+const header = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>¡¡Lab 11: Express!!</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <!-- Aquí se usan los íconos de font awesome  -->
+        <script src="https://kit.fontawesome.com/98026b1a47.js" crossorigin="anonymous"></script>
+      </head>
+      <body>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="http://localhost:3000/">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Deadpool_logo.jpg" width="112" height="28">
               </a>
-
-              <a id="boton_casa" class="navbar-item">
-                Esta es mi casa
-              </a>
-        
-              <a class="navbar-item" href="/wolverine">
-                Enviar mensaje a Wolverine
-              </a>
-
-              <a class="navbar-item" href="/deadpool!">
-                Deadpool!
+          
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
               </a>
             </div>
-        
-            <div class="navbar-end">
-              <div class="navbar-item">
-                <div class="buttons">
-                  <a id="boton_disparar" class="button is-primary">
-                    <strong>Disparar Enemigo</strong>
-                  </a>
+          
+            <div id="navbarBasicExample" class="navbar-menu">
+              <div class="navbar-start">
+                <a class="navbar-item" href="/">
+                   Home
+                </a>
+
+                <a id="boton_casa" class="navbar-item">
+                  Esta es mi casa
+                </a>
+          
+                <a class="navbar-item" href="/wolverine">
+                  Enviar mensaje a Wolverine
+                </a>
+
+                <a class="navbar-item" href="/deadpool!">
+                  Deadpool!
+                </a>
+              </div>
+          
+              <div class="navbar-end">
+                <div class="navbar-item">
+                  <div class="buttons">
+                    <a id="boton_disparar" class="button is-primary">
+                      <strong>Disparar Enemigo</strong>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </nav>
-        <section class="section">
-            <div class="container">
-              <h1 id="title" class="title">Hello there</h1>
-              <div class="block">
-                <figure>
-                    <img id="imagen_disparar" src="https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/02/1484222978-deadpool.jpg?resize=1200:*">
-                </figure>
-              </div>
-              <div class="columns">
-        </div>
+          </nav>
+          `;
+
+const footer = `
+    </div>
     </section>
     <footer class="footer">
       <div class="content has-text-centered">
@@ -147,7 +130,113 @@ app.get('/', (request, response, next) => {
             casa.onclick = Esta_es_mi_casa;
         </script>
       </body>
-    </html>`); //Manda la respuesta
+    </html>
+    `;
+
+//Middleware
+app.use((request, response, next) => {
+  console.log('Middleware!');
+  next(); //Le permite a la petición avanzar hacia el siguiente middleware
+});
+
+app.use('/deadpool!', (request, response, next) => {
+  const final = header + `
+  <section class="section">
+    <div class="container">
+      <h1 id="title" class="title">Deadpool!</h1>
+      <div class="block">
+        <figure>
+            <img id="imagen_disparar" src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1_5x/sources/r1/cms/prod/old_images/MOVIE/3257/1770003257/1770003257-h">
+        </figure>
+      </div>
+      <div class="columns">` + footer;
+  response.send(final); 
+});
+
+app.get('/wolverine', (request, response, next) => {
+  const final = header + `
+  <section class="section">
+    <div class="container">
+      <h1 id="title" class="title"> Envía un mensaje a nuestro bro Wolverine </h1>
+      <form action="/wolverine" method="POST">
+        <label class="label" for="titulo">Titulo de mensaje:</label>
+        <input name="titulo" class="input" type="text" id="titulo"><br>
+        <label class="label" for="mensaje">Mensaje para el broski:</label>
+        <input name="mensaje" class="input" type="text" id="mensaje"><br><br>
+        <input class="button is-success" type="submit" value="Enviar">
+      </form>
+    </div>
+    <br>
+    <div class="block">
+      <figure>
+        <img id="imagen_disparar" src="">
+      </figure>
+    </div>
+  </section>
+` + footer;
+  response.send(final);
+})
+
+app.post('/wolverine', (request, response, next) => {
+  console.log(request.body);
+  messages.push(request.body);
+  response.redirect('/');
+})
+
+app.get('/', (request, response, next) => {
+  console.log('Ruta /');
+  let final = header;
+  final += `
+  <section class="section">
+      <div class="container">
+        <h1 id="title" class="title">Hello there</h1>
+        <div class="block">
+          <figure>
+              <img id="imagen_disparar" src="https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/02/1484222978-deadpool.jpg?resize=1200:*">
+          </figure>
+        </div>
+        <div class="columns">`;
+
+  let tarjetas_mensajes = '';
+    for(let mensaje of messages) {
+      tarjetas_mensajes += `
+        <div class="column">
+            <div class="card">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">${mensaje.titulo}</p>
+                    <p class="subtitle is-6">@Deadp00l!</p>
+                  </div>
+                </div>
+            
+                <div class="content">
+                  ${mensaje.mensaje}
+                  <br>
+                </div>
+              </div>
+            </div>
+      </div>
+    `;}
+
+  final += tarjetas_mensajes + `</div>` + footer;
+  response.send(final);
+  });
+
+app.use((request, response, next) => {
+  response.status(404);
+  const final = header + `
+  <section class="section">
+  <div class="container">
+    <h1 id="title" class="title">Oops, no existe el enemigo que estas buscando</h1>
+      <div class="block">
+        <figure>
+          <img id="imagen_disparar" src="https://shirtoid.com/wp-content/uploads/2017/12/Oops.jpg">
+         </figure>
+      </div>
+    </div>
+  </section>` + footer;
+  response.send(final);
 });
 
 // Para que el servidor este activo
