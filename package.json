@@ -1,0 +1,30 @@
+{
+  "name": "deadpool_webpage",
+  "version": "1.0.0",
+  "description": "La Pagina web de deadpool desarrollada en los laboratorios en clase",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jesus0204/RepoPersonal_TC2005B_Deadpool.git"
+  },
+  "keywords": [
+    "deadpool",
+    "laboratorio",
+    "aprendizaje"
+  ],
+  "author": "Jesus Cedillo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jesus0204/RepoPersonal_TC2005B_Deadpool/issues"
+  },
+  "homepage": "https://github.com/Jesus0204/RepoPersonal_TC2005B_Deadpool#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "nodemon": "^3.1.0"
+  }
+}
