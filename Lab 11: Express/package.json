@@ -1,0 +1,32 @@
+{
+  "name": "lab_11_express",
+  "version": "1.0.0",
+  "description": "Laboratorio 11: Express",
+  "main": "Lab 11.js",
+  "scripts": {
+    "start": "node_modules/.bin/nodemon Lab_11.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jesus0204/RepoPersonal_TC2005B_Deadpool.git"
+  },
+  "keywords": [
+    "TC2005B",
+    "Lab_11",
+    "Intro_Express"
+  ],
+  "author": "Jesús Cedillo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jesus0204/RepoPersonal_TC2005B_Deadpool/issues"
+  },
+  "homepage": "https://github.com/Jesus0204/RepoPersonal_TC2005B_Deadpool#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  }
+}
