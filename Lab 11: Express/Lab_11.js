@@ -60,6 +60,10 @@ const header = `
                 <a class="navbar-item" href="/instagram">
                   Instagram
                 </a>
+
+              <a class="navbar-item" href="/trailer">
+                Trailer Deadpool 3
+              </a>
               </div>
           
               <div class="navbar-end">
@@ -261,6 +265,24 @@ app.use('/instagram', (request, response, next) => {
   </div>`
 
   final += footer;
+  response.send(final);
+})
+
+app.use('/trailer', (request, response, next) => {
+  let final = header + `
+  <section class="section">
+    <div class="container">
+      <h1 id="title" class="title">Trailer de Deadpool 3</h1>
+      <div class="block">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/uJMCNJP2ipI?si=mTX9b0t5k6acf4cW?autoplay=1&controls=0" title="YouTube video player">
+      </iframe>
+      </div>
+      <div class="block">
+        <figure>
+            <img id="imagen_disparar" src="">
+        </figure>
+      </div>
+      <div class="columns">` + footer;
   response.send(final);
 })
 
