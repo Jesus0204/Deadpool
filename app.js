@@ -3,9 +3,6 @@ const express = require('express');
 // Inicia la app usuando a express
 const app = express();
 
-
-// App tiene un metodo que se llama use
-
 // Manipular facil los datos de las peticiones
 const bodyParser = require('body-parser');
 
