@@ -3,6 +3,10 @@ const express = require('express');
 // Inicia la app usuando a express
 const app = express();
 
+// Configuras a EJS como motor de templates con express
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 const path = require('path');
 
 // La aplicacion va a tener acceso a todo lo que esta en public
