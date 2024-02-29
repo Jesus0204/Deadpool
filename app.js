@@ -142,9 +142,10 @@ app.use((request, response, next) => {
   next(); //Le permite a la petición avanzar hacia el siguiente middleware
 });
 
-
+// Guardas las rutas del modulo en el archivo
 const rutasWolverine = require('./routes/wolverine.routes.js');
 
+// Usas esas rutas en la variable
 app.use('/', rutasWolverine);
 
 app.use((request, response, next) => {
