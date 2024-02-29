@@ -279,27 +279,7 @@ router.use('/trailer', (request, response, next) => {
 });
 
 router.get('/wolverine', (request, response, next) => {
-    const final = header + `
-    <section class="section">
-      <div class="container">
-        <h1 id="title" class="title"> Envía un mensaje a nuestro bro Wolverine </h1>
-        <form action="/wolverine" method="POST">
-          <label class="label" for="titulo">Titulo de mensaje:</label>
-          <input name="titulo" class="input" type="text" id="titulo"><br>
-          <label class="label" for="mensaje">Mensaje para el broski:</label>
-          <input name="mensaje" class="input" type="text" id="mensaje"><br><br>
-          <input class="button is-success" type="submit" value="Enviar">
-        </form>
-      </div>
-      <br>
-      <div class="block">
-        <figure>
-          <img id="imagen_disparar" src="">
-        </figure>
-      </div>
-    </section>
-  ` + footer;
-    response.send(final);
+    response.render('mensaje_wolverine.ejs');
   })
   
 router.post('/wolverine', (request, response, next) => {
