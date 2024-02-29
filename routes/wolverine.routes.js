@@ -10,22 +10,10 @@ const messages = [
     mensaje: "Don't just stand there you ape! Get over here and give me a hand!"
   }
 ];
-
-router.use('/deadpool!', (request, response, next) => {
-    response.render('deadpool'); 
-});
   
-router.use('/instagram', (request, response, next) => {
-  response.render('instagram');
-});
-  
-router.use('/trailer', (request, response, next) => {
-    response.render('trailer');
-});
-
 router.get('/wolverine', (request, response, next) => {
     response.render('mensaje_wolverine');
-  })
+});
   
 router.post('/wolverine', (request, response, next) => {
   console.log(request.body);

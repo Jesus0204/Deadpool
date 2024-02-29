@@ -24,10 +24,18 @@ app.use((request, response, next) => {
   next(); //Le permite a la petición avanzar hacia el siguiente middleware
 });
 
+const rutasSocial = require('./routes/social.routes.js');
+app.use('/social', rutasSocial);
+
+app.get('/password', (request, response, next) => {
+  response.sendFile(
+    path.join(__dirname, 'public', 'password.html')
+    );
+});
 
 const rutasWolverine = require('./routes/wolverine.routes.js');
-
 app.use('/', rutasWolverine);
+
 
 // Ahora se envia la respuesta con un archivo html que se encuentra en la carpeta views
 app.use((request, response, next) => {
