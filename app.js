@@ -5,6 +5,9 @@ const app = express();
 
 const path = require('path');
 
+// La aplicacion va a tener acceso a todo lo que esta en public
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Manipular facil los datos de las peticiones
 const bodyParser = require('body-parser');
 
