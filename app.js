@@ -16,7 +16,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 const bodyParser = require('body-parser');
 
 // Configura bodyparser
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 //Middleware
 app.use((request, response, next) => {
@@ -30,7 +32,7 @@ app.use('/social', rutasSocial);
 app.get('/password', (request, response, next) => {
   response.sendFile(
     path.join(__dirname, 'public', 'password.html')
-    );
+  );
 });
 
 // Guardas las rutas del modulo en el archivo
@@ -45,7 +47,7 @@ app.use((request, response, next) => {
   response.status(404);
   response.sendFile(
     path.join(__dirname, 'views', '404.html')
-    );
+  );
 });
 
 // Para que el servidor este activo

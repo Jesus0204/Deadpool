@@ -71,8 +71,7 @@ const validar_pass = () => {
     if ((password_1_value == password_2_value) && password_1_value != "") {
         paragraph.innerHTML = "¡La contraseña es correcta!";
         paragraph.className = "has-text-success";
-    }
-    else {
+    } else {
         paragraph.innerHTML = "¡Incorrecto! Por favor intenta de nuevo. :)";
         paragraph.className = "has-text-danger-dark";
     }
@@ -101,12 +100,11 @@ const validacion_caracteres = () => {
     const hidden_2 = document.getElementById("hidden_text_2");
     const pass_value = password_1.value;
 
-    if (seguridad(pass_value) == false){
+    if (seguridad(pass_value) == false) {
         validar_dis.disabled = true;
         hidden.classList.remove("is-hidden");
         hidden_2.classList.add("is-hidden");
-    }
-    else if (seguridad(pass_value) == true){
+    } else if (seguridad(pass_value) == true) {
         hidden.classList.add("is-hidden");
         validar_dis.disabled = false;
         hidden_2.classList.remove("is-hidden");
@@ -116,23 +114,23 @@ const validacion_caracteres = () => {
 
 function seguridad(pass_value) {
     // Length de password
-    if (pass_value.length <= 7){
+    if (pass_value.length <= 7) {
         return false;
     }
 
     // Números
     const numeros = /[0-9]/;
-    if (numeros.test(pass_value) == false){
+    if (numeros.test(pass_value) == false) {
         return false;
     }
 
     // Mayusculas y minisculas
     const mayusculas = /[A-Z]/;
     const minisculas = /[a-z]/;
-    if (mayusculas.test(pass_value) == false){
+    if (mayusculas.test(pass_value) == false) {
         return false;
     }
-    if (minisculas.test(pass_value) == false){
+    if (minisculas.test(pass_value) == false) {
         return false;
     }
 
