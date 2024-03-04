@@ -16,8 +16,8 @@ module.exports = class Wolverine_Message {
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
         messages.push({
-            nombre: this.nombre,
-            imagen: this.imagen,
+            titulo: this.titulo,
+            mensaje: this.mensaje,
         }); // Es lo mismo que messages.push(this);
     }
 
