@@ -4,6 +4,9 @@ const express = require('express');
 // Ahora en vez de usar app, se usa el router de express
 const router = express.Router();
 
+// Incluyes el modulo de tu controller en routes
+const wolverineController = require('../controllers/wolverine.controller');
+
 const messages = [
   {
     titulo: "¡¿Help?!", 
@@ -11,9 +14,8 @@ const messages = [
   }
 ];
   
-router.get('/wolverine', (request, response, next) => {
-    response.render('mensaje_wolverine');
-});
+// Le dices para esa ruta, que use el controlador con el método getwolverine
+router.get('/wolverine', wolverineController.get_wolverine);
   
 router.post('/wolverine', (request, response, next) => {
   console.log(request.body);
