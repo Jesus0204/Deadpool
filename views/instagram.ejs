@@ -41,39 +41,6 @@
       <div class="column">
         <div class="card">
           <div class="card-image">
-            <figure class="image is-3by2">
-              <img
-                src="https://cnnespanol.cnn.com/wp-content/uploads/2023/07/deadpool-3-wolverine.jpg?quality=100&strip=info&w=940&h=530&crop=1"
-                alt="Placeholder image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img
-                    src="https://cnnespanol.cnn.com/wp-content/uploads/2023/07/deadpool-3-wolverine.jpg?quality=100&strip=info&w=940&h=530&crop=1"
-                    alt="Placeholder image">
-                </figure>
-              </div>
-              <div class="media-content">
-                <p class="title is-4">Lo encontre!</p>
-                <p class="subtitle is-6">@deadp00l!</p>
-              </div>
-            </div>
-
-            <div class="content">
-              Estaba caminando de regreso hacia el universo de Fox.
-              <br>
-              <time datetime="2024-1-1">1:45 PM - 1 Jan 2024</time>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="card">
-          <div class="card-image">
             <figure class="image is-square">
               <img
                 src="https://www.cnet.com/a/img/resize/c6f874db32e0ab4c7fa8e34bee3d3e3b57215fd5/hub/2018/05/14/59b90dde-f0e9-4250-b13b-a520ae2fba5d/deadpool-2-og.jpg?auto=webp&fit=crop&height=1200&width=1200"
@@ -103,6 +70,40 @@
           </div>
         </div>
       </div>
+
+      <% for (let insta_post of instagram_post) { %>
+        <div class="column">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-5by3">
+                <img
+                  src= "<%= insta_post.imagen %>">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img
+                      src= "<%= insta_post.imagen %>">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4"><%= insta_post.titulo %></p>
+                  <p class="subtitle is-6">@deadp00l!</p>
+                </div>
+              </div>
+
+              <div class="content">
+                <%= insta_post.caption %>
+                <br>
+                <time datetime="2024-1-1"><%= insta_post.fecha %></time>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+
     </div>
     <a href="crear_post">
       <button class="button is-link">Crear post de instagram</button>
