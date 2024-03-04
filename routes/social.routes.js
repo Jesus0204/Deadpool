@@ -8,6 +8,8 @@ const router = express.Router();
 const socialController = require('../controllers/social.controller');
 
 router.get('/deadpool!', socialController.get_deadpool);
+router.get('/crear_post', socialController.get_crear_post);
+router.post('/crear_post', socialController.post_crear_post);
 router.get('/instagram', socialController.get_instagram);
 router.get('/trailer', socialController.get_trailer);
 
