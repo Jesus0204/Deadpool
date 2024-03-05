@@ -12,7 +12,7 @@ exports.post_wolverine = (request, response, next) => {
   // Llamas al método de la clase que guarda eso en el arreglo
   message.save();
   // Guardas una cookie mandandola en el header, guardando el último mensaje del usuario
-  response.setHeader('Set-Cookie', 'ultimo_mensaje=' + request.body.mensaje);
+  response.setHeader('Set-Cookie', 'ultimo_mensaje=' + request.body.mensaje + '; HttpOnly');
   response.redirect('/');
 };
 

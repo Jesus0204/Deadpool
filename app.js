@@ -9,6 +9,15 @@ app.set('views', 'views');
 
 const path = require('path');
 
+// Para usar las sesiones
+const session = require('express-session');
+
+app.use(session({
+  secret: 'mi string secreto que debe ser un string aleatorio muy largo, no como éste',
+  resave: false, //La sesión no se guardará en cada petición, sino sólo se guardará si algo cambió 
+  saveUninitialized: false, //Asegura que no se guarde una sesión para una petición que no lo necesita
+}));
+
 // La aplicacion va a tener acceso a todo lo que esta en public
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,6 +37,9 @@ app.use((request, response, next) => {
 
 const rutasSocial = require('./routes/social.routes.js');
 app.use('/social', rutasSocial);
+
+const rutasUsuarios = require('./routes/users.routes.js');
+app.use('/users', rutasUsuarios);
 
 app.get('/password', (request, response, next) => {
   response.sendFile(
