@@ -29,6 +29,10 @@
       </div>
       <% } %>
     </div>
+    <br>
+    <% if(ultimo_mensaje != '') { %>
+    El último mensaje fue <%= ultimo_mensaje %>.
+    <% } %>
   </div>
 </section>
 <%- include('includes/foot.ejs') %>
