@@ -62,21 +62,26 @@
           Password validator
         </a>
 
+        <div class="navbar-item">
+          <a id="boton_disparar" class="button is-primary">
+            <strong>Disparar Enemigo</strong>
+          </a>
+        </div>
+
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a id="boton_disparar" class="button is-primary">
-              <strong>Disparar Enemigo</strong>
-            </a>
             <% if (username == '') { %>
               <a href="/users/login" class="button is-light">
                 <strong>Log in</strong>
               </a>
             <% } else { %>
-              <span>
-                Hola <strong> <%= username %> | </strong>
-              </span>
+              <div class="navbar-item">
+                <span>
+                  Hola <strong> <%= username %> |</strong>
+                </span>
+              </div>
               <a href="/users/logout" class="button is-danger">
                 <strong>Log out</strong>
               </a>
