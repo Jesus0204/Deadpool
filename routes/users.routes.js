@@ -7,6 +7,7 @@ const router = express.Router();
 const userController = require('../controllers/users.controller')
 
 router.get('/login', userController.get_login);
+router.post('/login', userController.post_login);
 
 // Con esta linea se permite que se exporte en el principal
 module.exports = router;
