@@ -9,9 +9,9 @@ app.set('views', 'views');
 
 const path = require('path');
 
-// Para usar cookie parser pones un Middleware que use cookie parser
+// Para que se puede usar cookie parser de forma mas facil
 const cookieParser = require('cookie-parser')
-app.use(cookieParser())
+app.use(cookieParser('Un secreto'))
 
 // Para usar las sesiones
 const session = require('express-session');
