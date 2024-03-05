@@ -1,15 +1,20 @@
 exports.get_deadpool = (request, response, next) => {
-    response.render('deadpool');
+    response.render('deadpool', {
+        username: request.session.username || '',
+    });
 };
 
 exports.get_crear_post = (request, response, next) => {
-    response.render('crear_post');
+    response.render('crear_post', {
+        username: request.session.username || '',
+    });
 };
 
 const Instagram_Post = require('../models/create_instagram_post.model');
 
 exports.get_instagram = (request, response, next) => {
     response.render('instagram', {
+        username: request.session.username || '',
         instagram_post: Instagram_Post.fetchAll(),
     });
 };
@@ -25,5 +30,7 @@ exports.post_crear_post = (request, response, next) => {
 };
 
 exports.get_trailer = (request, response, next) => {
-    response.render('trailer');
+    response.render('trailer', {
+        username: request.session.username || '',
+    });
 };

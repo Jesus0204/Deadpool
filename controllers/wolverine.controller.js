@@ -1,5 +1,7 @@
 exports.get_wolverine = (request, response, next) => {
-  response.render('mensaje_wolverine');
+  response.render('mensaje_wolverine', {
+    username: request.session.username || '',
+  });
 };
 
 const Wolverine_Message = require('../models/wolverine_message.model');
@@ -35,5 +37,6 @@ exports.get_root = (request, response, next) => {
     messages: Wolverine_Message.fetchAll(),
     // Para pasar la variavle a ejs, lo pasas de esta forma
     ultimo_mensaje: ultimo_mensaje,
+    username: request.session.username || '',
   });
 };

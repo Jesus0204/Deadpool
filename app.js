@@ -57,7 +57,9 @@ app.use('/', rutasWolverine);
 // Ahora se envia la respuesta con un archivo html que se encuentra en la carpeta views
 app.use((request, response, next) => {
   response.status(404);
-  response.render('404');
+  response.render('404', {
+    username: request.session.username || '',
+  });
 });
 
 // Para que el servidor este activo
