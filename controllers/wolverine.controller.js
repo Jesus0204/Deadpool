@@ -29,11 +29,19 @@ exports.get_root = (request, response, next) => {
 
   // Lo imprimes en la consola
   console.log(ultimo_mensaje);
-  //console.log(ultimo_mensaje)
-  response.render('homepage', {
-    messages: Wolverine_Message.fetchAll(),
-    // Para pasar la variavle a ejs, lo pasas de esta forma
-    ultimo_mensaje: ultimo_mensaje,
-    username: request.session.username || '',
-  });
+
+  // En fetch all esta la consulta de la base de datos
+  // Si la promesa se ejecuto, pasas rows (donde se guarda la info) le 
+  Wolverine_Message.fetchAll().then(([rows, fieldData]) => {
+      response.render('homepage', {
+        messages: rows,
+        // Para pasar la variable a ejs, lo pasas de esta forma
+        ultimo_mensaje: ultimo_mensaje,
+        username: request.session.username || '',
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
 };

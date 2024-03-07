@@ -19,7 +19,7 @@ module.exports = class Wolverine_Message {
     //Este método servirá para devolver los objetos del almacenamiento persistente.
     // Métodos estáticos se ejecuta sobre la clase, no un objeto de la clase
     static fetchAll() {
-        return messages;
+        return db.execute('SELECT * FROM Mensaje');
     }
 
 }
