@@ -1,9 +1,4 @@
-const messages = [
-  {
-    titulo: "¡¿Help?!", 
-    mensaje: "Don't just stand there you ape! Get over here and give me a hand!"
-  }
-];
+const db = require('../util/database');
 
 module.exports = class Wolverine_Message {
 
