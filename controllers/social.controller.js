@@ -13,10 +13,17 @@ exports.get_crear_post = (request, response, next) => {
 const Instagram_Post = require('../models/create_instagram_post.model');
 
 exports.get_instagram = (request, response, next) => {
-    response.render('instagram', {
-        username: request.session.username || '',
-        instagram_post: Instagram_Post.fetchAll(),
-    });
+
+    Instagram_Post.fetchAll().
+        then(([rows, fieldData]) => {
+            response.render('instagram', {
+                username: request.session.username || '',
+                instagram_post: rows,
+            });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 };
 
 exports.post_crear_post = (request, response, next) => {
@@ -25,8 +32,14 @@ exports.post_crear_post = (request, response, next) => {
     // Creas una nueva instancia de la clase con su titulo y mensaje
     const instagram_post =
         new Instagram_Post(request.body.titulo, request.body.caption, request.body.fecha, request.body.imagen);
-    instagram_post.save();
-    response.redirect('/social/instagram');
+        
+    instagram_post.save()
+    .then(([rows, fieldData]) => {
+        response.redirect('/social/instagram');
+        })
+        .catch((error) => {
+            console.log(error)
+        });;
 };
 
 exports.get_trailer = (request, response, next) => {

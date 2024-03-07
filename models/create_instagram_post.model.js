@@ -1,9 +1,4 @@
-const instagram_post = [{
-    titulo: "Lo encontre!",
-    caption: "Estaba caminando de regreso hacia el universo de Fox.",
-    fecha: "1:45 PM - 1 Jan 2024",
-    imagen: "https://cnnespanol.cnn.com/wp-content/uploads/2023/07/deadpool-3-wolverine.jpg?quality=100&strip=info&w=940&h=530&crop=1"
-}];
+const db = require('../util/database');
 
 module.exports = class Instagram_Post {
 
@@ -17,17 +12,15 @@ module.exports = class Instagram_Post {
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        instagram_post.push({
-            titulo: this.titulo,
-            caption: this.caption,
-            fecha: this.fecha, 
-            imagen: this.imagen
-        }); // Es lo mismo que messages.push(this);
+        return db.execute(
+            'INSERT INTO Insta_Post (titulo, caption, imagen) VALUES (?, ?, ?)',
+            [this.titulo, this.caption, this.imagen]
+        );
     }
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.
     // Métodos estáticos se ejecuta sobre la clase, no un objeto de la clase
     static fetchAll() {
-        return instagram_post;
+        return db.execute('SELECT * FROM Insta_Post');
     }
 }
