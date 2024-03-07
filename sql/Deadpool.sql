@@ -24,12 +24,12 @@ DROP TABLE IF EXISTS `Insta_Post`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Insta_Post` (
   `IDInsta_Post` int NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(50) COLLATE utf8mb3_spanish2_ci DEFAULT NULL,
-  `caption` varchar(100) COLLATE utf8mb3_spanish2_ci DEFAULT NULL,
+  `titulo` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish2_ci DEFAULT NULL,
+  `caption` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish2_ci DEFAULT NULL,
   `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `imagen` varchar(200) COLLATE utf8mb3_spanish2_ci DEFAULT NULL,
+  `imagen` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish2_ci DEFAULT NULL,
   PRIMARY KEY (`IDInsta_Post`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `Insta_Post` (
 
 LOCK TABLES `Insta_Post` WRITE;
 /*!40000 ALTER TABLE `Insta_Post` DISABLE KEYS */;
-INSERT INTO `Insta_Post` VALUES (1,'Lo encontre!','Estaba caminando de regreso hacia el universo de Fox.','2024-03-07 21:06:01','https://cnnespanol.cnn.com/wp-content/uploads/2023/07/deadpool-3-wolverine.jpg?quality=100&strip=info&w=940&h=530&crop=1');
+INSERT INTO `Insta_Post` VALUES (1,'Lo encontre!','Estaba caminando de regreso hacia el universo de Fox.','2024-03-08 03:06:01','https://cnnespanol.cnn.com/wp-content/uploads/2023/07/deadpool-3-wolverine.jpg?quality=100&strip=info&w=940&h=530&crop=1'),(2,'Hello there','Aqui con el general','2024-03-07 21:50:27','https://www.usatoday.com/gcdn/-mm-/32b0614a1fd095bbc49fcea15a4ae90ee6718e00/c=0-0-2999-1695/local/-/media/2016/02/11/USATODAY/USATODAY/635908058668140572-AP-FILM-REVIEW-DEADPOOL-79512492.JPG?width=1320&height=748&fit=crop&format=pjpg&auto=webp'),(3,'Lo encontre!','Estaba caminando de regreso hacia el universo de Fox.','2024-03-07 21:53:16','https://cnnespanol.cnn.com/wp-content/uploads/2023/07/deadpool-3-wolverine.jpg?quality=100&strip=info&w=940&h=530&crop=1');
 /*!40000 ALTER TABLE `Insta_Post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,4 +105,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-07 15:07:17
+-- Dump completed on 2024-03-07 15:53:44

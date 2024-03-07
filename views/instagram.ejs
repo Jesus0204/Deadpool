@@ -8,70 +8,36 @@
       </figure>
     </div>
     <div class="columns">
+      <% for (let insta_post of instagram_post) { %>
       <div class="column">
         <div class="card">
           <div class="card-image">
-            <figure class="image is-square">
-              <img
-                src="https://www.cnet.com/a/img/resize/c6f874db32e0ab4c7fa8e34bee3d3e3b57215fd5/hub/2018/05/14/59b90dde-f0e9-4250-b13b-a520ae2fba5d/deadpool-2-og.jpg?auto=webp&fit=crop&height=1200&width=1200"
-                alt="Placeholder image">
+            <figure class="image is-5by3">
+              <img src="<%= insta_post.imagen %>">
             </figure>
           </div>
           <div class="card-content">
             <div class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img
-                    src="https://www.cnet.com/a/img/resize/c6f874db32e0ab4c7fa8e34bee3d3e3b57215fd5/hub/2018/05/14/59b90dde-f0e9-4250-b13b-a520ae2fba5d/deadpool-2-og.jpg?auto=webp&fit=crop&height=1200&width=1200"
-                    alt="Placeholder image">
+                  <img src="<%= insta_post.imagen %>">
                 </figure>
               </div>
               <div class="media-content">
-                <p class="title is-4">Escuchando unos buenos beats</p>
+                <p class="title is-4"><%= insta_post.titulo %></p>
                 <p class="subtitle is-6">@deadp00l!</p>
               </div>
             </div>
 
             <div class="content">
-              ¿A quién más le gusta Solence?
+              <%= insta_post.caption %>
               <br>
-              <time datetime="2024-2-27">11:09 PM - 27 Feb 2024</time>
+              <br>
+              <time datetime="2024-1-1"><%= insta_post.fecha %></time>
             </div>
           </div>
         </div>
       </div>
-
-      <% for (let insta_post of instagram_post) { %>
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-5by3">
-                <img
-                  src= "<%= insta_post.imagen %>">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img
-                      src= "<%= insta_post.imagen %>">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4"><%= insta_post.titulo %></p>
-                  <p class="subtitle is-6">@deadp00l!</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <%= insta_post.caption %>
-                <br>
-                <time datetime="2024-1-1"><%= insta_post.fecha %></time>
-              </div>
-            </div>
-          </div>
-        </div>
       <% } %>
 
     </div>

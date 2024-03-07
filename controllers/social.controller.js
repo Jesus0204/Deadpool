@@ -31,7 +31,7 @@ exports.post_crear_post = (request, response, next) => {
     console.log(request.body);
     // Creas una nueva instancia de la clase con su titulo y mensaje
     const instagram_post =
-        new Instagram_Post(request.body.titulo, request.body.caption, request.body.fecha, request.body.imagen);
+        new Instagram_Post(request.body.titulo, request.body.caption, request.body.imagen);
         
     instagram_post.save()
     .then(([rows, fieldData]) => {

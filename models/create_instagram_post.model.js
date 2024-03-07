@@ -3,10 +3,9 @@ const db = require('../util/database');
 module.exports = class Instagram_Post {
 
     // Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
-    constructor(titulo_1, caption_1, fecha_1, imagen_1) {
+    constructor(titulo_1, caption_1, imagen_1) {
         this.titulo = titulo_1;
         this.caption = caption_1;
-        this.fecha = fecha_1;
         this.imagen = imagen_1;
     }
 
