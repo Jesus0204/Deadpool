@@ -10,10 +10,10 @@ module.exports = class Wolverine_Message {
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        messages.push({
-            titulo: this.titulo,
-            mensaje: this.mensaje,
-        }); // Es lo mismo que messages.push(this);
+        return db.execute(
+            'INSERT INTO Mensaje (titulo, mensajes, username) VALUES (?, ?, "Jesus0204")',
+            [this.titulo, this.mensaje]
+        );
     }
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.

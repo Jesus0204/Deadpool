@@ -12,13 +12,16 @@ exports.post_wolverine = (request, response, next) => {
   const message =
     new Wolverine_Message(request.body.titulo, request.body.mensaje);
   // Llamas al método de la clase que guarda eso en el arreglo
-  message.save();
-  // Guardas una cookie mandandola en el header, guardando el último mensaje del usuario
-  // La cookie es signed para que sea segura y no la puedan modificar
-  response.cookie("ultimo_mensaje", request.body.mensaje, {
-    signed: true
-  });
-  response.redirect('/');
+  message.save()
+  .then(([rows, fieldData]) => {
+    // Guardas una cookie mandandola en el header, guardando el último mensaje del usuario
+    // La cookie es signed para que sea segura y no la puedan modificar
+    response.cookie("ultimo_mensaje", request.body.mensaje, {
+      signed: true
+    });
+    response.redirect('/');
+  })
+  .catch((error) => {console.log(error)});
 };
 
 exports.get_root = (request, response, next) => {
@@ -31,7 +34,8 @@ exports.get_root = (request, response, next) => {
   console.log(ultimo_mensaje);
 
   // En fetch all esta la consulta de la base de datos
-  // Si la promesa se ejecuto, pasas rows (donde se guarda la info) le 
+  // Si la promesa se ejecuto, pasas rows (donde se guarda la info) a mensajes
+  // De esa forma el ejs sabe leer los daros
   Wolverine_Message.fetchAll().then(([rows, fieldData]) => {
       response.render('homepage', {
         messages: rows,
