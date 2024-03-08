@@ -3,16 +3,16 @@ const db = require('../util/database');
 module.exports = class Instagram_Post {
 
     // Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
-    constructor(titulo_1, caption_1, imagen_1) {
+    constructor(titulo_1, caption_1, imagen_1, username_1) {
         this.titulo = titulo_1;
         this.caption = caption_1;
-        this.imagen = imagen_1;
+        this.imagen = imagen_1;;
     }
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
         return db.execute(
-            'INSERT INTO Insta_Post (titulo, caption, imagen) VALUES (?, ?, ?)',
+            'INSERT INTO Insta_Post (titulo, caption, imagen, username) VALUES (?, ?, ?, "Jesus0204")',
             [this.titulo, this.caption, this.imagen]
         );
     }
