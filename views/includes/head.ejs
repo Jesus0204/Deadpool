@@ -73,18 +73,18 @@
         <div class="navbar-item">
           <div class="buttons">
             <% if (username == '') { %>
-              <a href="/users/login" class="button is-light">
-                <strong>Log in</strong>
-              </a>
+            <a href="/users/login" class="button is-light">
+              <strong>Log in</strong>
+            </a>
             <% } else { %>
-              <div class="navbar-item">
-                <span>
-                  Hola <strong> <%= username %> |</strong>
-                </span>
-              </div>
-              <a href="/users/logout" class="button is-danger">
-                <strong>Log out</strong>
-              </a>
+            <div class="navbar-item">
+              <span>
+                Hola <strong> <%= username %> |</strong>
+              </span>
+            </div>
+            <a href="/users/logout" class="button is-danger">
+              <strong>Log out</strong>
+            </a>
             <% } %>
           </div>
         </div>
