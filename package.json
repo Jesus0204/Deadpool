@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Jesus0204/RepoPersonal_TC2005B_Deadpool#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "ejs": "^3.1.9",

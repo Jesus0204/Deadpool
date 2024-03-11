@@ -33,7 +33,7 @@ exports.get_mensajes = (request, response, next) => {
   // Si la promesa se ejecuto, pasas rows (donde se guarda la info) a mensajes
   // De esa forma el ejs sabe leer los daros
   Wolverine_Message.fetch(request.params.mensaje_id).then(([rows, fieldData]) => {
-      response.render('homepage', {
+      response.render('mensajes', {
         messages: rows,
         // Para pasar la variable a ejs, lo pasas de esta forma
         ultimo_mensaje: ultimo_mensaje,
