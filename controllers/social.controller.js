@@ -27,11 +27,9 @@ exports.get_instagram = (request, response, next) => {
 };
 
 exports.post_crear_post = (request, response, next) => {
-    // Pedir los datos que se pidieron
-    console.log(request.body);
     // Creas una nueva instancia de la clase con su titulo y mensaje
     const instagram_post =
-        new Instagram_Post(request.body.titulo, request.body.caption, request.body.imagen);
+        new Instagram_Post(request.body.titulo, request.body.caption, request.body.imagen, request.session.username);
         
     instagram_post.save()
     .then(([rows, fieldData]) => {
