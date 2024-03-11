@@ -13,6 +13,7 @@ router.get('/wolverine', wolverineController.get_wolverine);
 
 // Haces lo mismo para las otras rutas, llamando al controlador con sus acciones
 router.post('/wolverine', wolverineController.post_wolverine);
+router.get('/:mensaje_id', wolverineController.get_mensajes);
 router.get('/', wolverineController.get_mensajes);
 
 // Con esta linea se permite que se exporte en el principal

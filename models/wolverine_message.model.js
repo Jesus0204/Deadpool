@@ -22,4 +22,17 @@ module.exports = class Wolverine_Message {
         return db.execute('SELECT * FROM Mensaje');
     }
 
+    static fetchOne(id) {
+        return db.execute('SELECT * FROM Mensaje WHERE idMensaje=?', 
+        [id]);
+    }
+
+    static fetch(id){
+        if (id) {
+            return this.fetchOne(id);
+        } else {
+            return this.fetchAll();
+        }
+    }
+
 }
