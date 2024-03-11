@@ -25,7 +25,7 @@ module.exports = class Usuario {
     }
 
     static fetchOne(username, password) {
-        return db.execute('SELECT * FROM Usuario WHERE username=? AND password=?',
-            [username, password]);
+        return db.execute('SELECT * FROM Usuario WHERE username=?',
+            [username]);
     }
 }
