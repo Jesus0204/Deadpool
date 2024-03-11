@@ -3,16 +3,17 @@ const db = require('../util/database');
 module.exports = class Wolverine_Message {
 
     // Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
-    constructor(titulo_1, mensaje_1) {
+    constructor(titulo_1, mensaje_1, username_1) {
         this.titulo = titulo_1;
         this.mensaje = mensaje_1;
+        this.username = username_1;
     }
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
         return db.execute(
-            'INSERT INTO Mensaje (titulo, mensaje, username) VALUES (?, ?, "Jesus0204")',
-            [this.titulo, this.mensaje]
+            'INSERT INTO Mensaje (titulo, mensaje, username) VALUES (?, ?, ?)',
+            [this.titulo, this.mensaje, this.username]
         );
     }
 

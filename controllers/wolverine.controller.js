@@ -10,7 +10,7 @@ exports.post_wolverine = (request, response, next) => {
   console.log(request.body);
   // Creas una nueva instancia de la clase con su titulo y mensaje
   const message =
-    new Wolverine_Message(request.body.titulo, request.body.mensaje);
+    new Wolverine_Message(request.body.titulo, request.body.mensaje, request.session.username);
   // Llamas al método de la clase que guarda eso en el arreglo
   message.save()
   .then(([rows, fieldData]) => {
