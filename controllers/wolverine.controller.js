@@ -32,7 +32,7 @@ exports.get_mensajes = (request, response, next) => {
   // En fetch all esta la consulta de la base de datos
   // Si la promesa se ejecuto, pasas rows (donde se guarda la info) a mensajes
   // De esa forma el ejs sabe leer los daros
-  Wolverine_Message.fetch(request.params.mensaje_id).then(([rows, fieldData]) => {
+  Wolverine_Message.fetch(request.params.mensaje_id, request.session.username).then(([rows, fieldData]) => {
       response.render('mensajes', {
         messages: rows,
         // Para pasar la variable a ejs, lo pasas de esta forma

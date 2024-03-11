@@ -14,7 +14,7 @@ const Instagram_Post = require('../models/create_instagram_post.model');
 
 exports.get_instagram = (request, response, next) => {
 
-    Instagram_Post.fetchAll().
+    Instagram_Post.fetch(request.params.insta_id, request.session.username).
         then(([rows, fieldData]) => {
             response.render('instagram', {
                 username: request.session.username || '',

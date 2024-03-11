@@ -20,8 +20,21 @@ module.exports = class Instagram_Post {
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.
     // Métodos estáticos se ejecuta sobre la clase, no un objeto de la clase
-    static fetchAll() {
+    static fetchAll(current_username) {
         return db.execute('SELECT * FROM Insta_Post WHERE username=?',
-        [this.username]);
+            [current_username]);
+    }
+
+    static fetchOne(id, current_username) {
+        return db.execute('SELECT * FROM Insta_Post WHERE idInsta_Post=? AND username=?',
+            [id, current_username]);
+    }
+
+    static fetch(id, current_username) {
+        if (id) {
+            return this.fetchOne(id, current_username);
+        } else {
+            return this.fetchAll(current_username);
+        }
     }
 }
