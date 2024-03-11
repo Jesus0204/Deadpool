@@ -19,13 +19,12 @@ exports.post_wolverine = (request, response, next) => {
     response.cookie("ultimo_mensaje", request.body.mensaje, {
       signed: true
     });
-    response.redirect('/');
+    response.redirect('/mensajes');
   })
   .catch((error) => {console.log(error)});
 };
 
-exports.get_root = (request, response, next) => {
-  console.log('Ruta /');
+exports.get_mensajes = (request, response, next) => {
   /* Usando cookie parser sacas el cookie con request.cookies y como la cookie se llama ultimo_mensaje  
     Accedes rápido a esa cookie sin tener que hacer splits */
   let ultimo_mensaje = request.signedCookies.ultimo_mensaje;

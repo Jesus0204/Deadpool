@@ -55,7 +55,7 @@ app.get('/password', (request, response, next) => {
 const rutasWolverine = require('./routes/wolverine.routes.js');
 
 // Usas esas rutas en la variable
-app.use('/', rutasWolverine);
+app.use('/mensajes', rutasWolverine);
 
 
 // Ahora se envia la respuesta con un archivo html que se encuentra en la carpeta views
