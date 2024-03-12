@@ -1,6 +1,6 @@
-CREATE database Deadpool_Labs;
+CREATE database Deadpool_Labs_test;
 
-USE Deadpool_Labs;
+USE Deadpool_Labs_test;
 
 CREATE TABLE Usuario (
 	username VARCHAR(30) NOT NULL PRIMARY KEY,
@@ -51,8 +51,8 @@ CREATE TABLE Posee (
 );
 
 CREATE TABLE Asigna (	
+	username VARCHAR(30),
 	idRol INT,
-    username VARCHAR(30),
     created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
     PRIMARY KEY(idRol, username),
     FOREIGN KEY(idRol) REFERENCES Rol(id),
@@ -77,3 +77,26 @@ INSERT INTO Insta_Post VALUES
 (2,'¡¿Vacaciones?!','Aquí en Vallarta buscando a mi buen amigo Wolverine','2024-03-07 22:18:07','https://pbs.twimg.com/media/Fr3GjD6WIAIZEU3?format=jpg&name=medium'),
 (3,'Lo encontre!','Estaba caminando de regreso hacia el universo de Fox.','2024-03-07 22:20:01','https://cnnespanol.cnn.com/wp-content/uploads/2023/07/deadpool-3-wolverine.jpg?quality=100&strip=info&w=940&h=530&crop=1'),
 (4,'Pose heroíca','Me veo genial no?','2024-03-07 22:21:47','https://www.usatoday.com/gcdn/-mm-/32b0614a1fd095bbc49fcea15a4ae90ee6718e00/c=0-0-2999-1695/local/-/media/2016/02/11/USATODAY/USATODAY/635908058668140572-AP-FILM-REVIEW-DEADPOOL-79512492.JPG?width=1320&height=748&fit=crop&format=pjpg&auto=webp');
+
+INSERT INTO Rol VALUES 
+(1, 'administrador', '2024-03-12 11:08:38'),
+(2, 'ultimate_fan', '2024-03-12 14:27:06'),
+(3, 'fan', '2024-03-12 14:27:06');
+
+INSERT INTO Permiso VALUES 
+(1, 'crear_post', '2024-03-12 11:06:35'),
+(2,'enviar_mensaje', '2024-03-12 14:25:37'),
+(3, 'password_validator', '2024-03-12 14:54:20');
+
+INSERT INTO Asigna VALUES 
+('Alexys', 3, '2024-03-12 14:27:26'),
+('Angel', 2, '2024-03-12 14:27:26'),
+('Deadpool', 1, '2024-03-12 11:13:33'),
+('Jesus0204', 1, '2024-03-12 11:11:19');
+
+INSERT INTO Posee VALUES 
+(1, 1, '2024-03-12 11:09:03'),
+(1, 2, '2024-03-12 14:25:56'),
+(1, 3, '2024-03-12 14:55:30'),
+(2, 2, '2024-03-12 14:28:17'),
+(2, 3, '2024-03-12 14:55:30');
