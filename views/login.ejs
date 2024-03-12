@@ -10,6 +10,7 @@
         <% } %>
 
         <form action="/users/<% if (registrar) { %>signup <% } else { %>login <% } %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <label class="label" for="username">Nombre de Usuario</label>
             <input name="username" class="input" type="text" id="username"><br>
             <label class="label" for="password">Contraseña</label>

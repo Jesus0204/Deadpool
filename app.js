@@ -33,6 +33,14 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
+// Para proteger del Cross-Site Request Forgery
+const csrf = require('csurf');
+const csrfProtection = csrf();
+
+//...Y después del código para inicializar la sesión... 
+app.use(csrfProtection);
+
+
 //Middleware
 app.use((request, response, next) => {
   console.log('Middleware!');

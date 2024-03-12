@@ -8,6 +8,7 @@ exports.get_login = (request, response, next) => {
     username: request.session.username || '',
     registrar: false,
     error: error,
+    csrfToken: request.csrfToken(),
     });
 };
 
@@ -61,6 +62,7 @@ exports.get_signup = (request, response, next) => {
         username: request.session.username || '',
         registrar: true,
         error: error,
+        csrfToken: request.csrfToken(),
     });
 };
 

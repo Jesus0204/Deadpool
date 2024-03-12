@@ -3,6 +3,7 @@
     <div class="container">
         <h1 id="title" class="title">Sube una publicacion de instagram</h1>
         <form action="/social/instagram/crear_post" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <label class="label" for="titulo">Titulo de post</label>
             <input name="titulo" class="input" type="text" id="titulo"><br>
             <label class="label" for="caption">Caption de post</label>

@@ -7,6 +7,7 @@ exports.get_deadpool = (request, response, next) => {
 exports.get_crear_post = (request, response, next) => {
     response.render('crear_post', {
         username: request.session.username || '',
+        csrfToken: request.csrfToken(),
     });
 };
 
