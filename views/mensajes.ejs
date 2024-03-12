@@ -5,7 +5,20 @@
 
 <section class="section">
   <div class="container">
-    <h1 id="title" class="title">Hello there</h1>
+    <p id="title" class="title is-2">Hello there</p>
+    <% let mega_fan = false %>
+    <% for (let funcion of permisos) { %>
+      <% if (funcion.funcion == 'enviar_mensaje') { %>
+        <% mega_fan = true; %>
+      <% } %>
+    <% } %>
+
+    <% if (mega_fan == true) { %>
+        <h2 class="subtitle is-4">Gracias por ser un Ultimate fan!</h2>
+      <% } else {  %>
+    <h2 class="subtitle is-4">¡Todavía no alcansas el estatus de Ultimate Fan. Sigue intentando!</h2>
+    <% } %>
+
     <div class="block">
       <figure>
         <img id="imagen_disparar"
@@ -13,13 +26,15 @@
       </figure>
     </div>
 
-    <% if (messages.length < 1) { %>
-    <div class="notification is-info">
-      <button class="delete"></button>
-      No existe el mensaje que estas buscando
-    </div>
-
+    <% if (mega_fan == true) { %>
+      <% if (messages.length < 1) { %>
+      <div class="notification is-info">
+        <button class="delete"></button>
+        No existe el mensaje que estas buscando
+      </div>
+      <% } %>
     <% } %>
+
 
     <div class="columns">
       <% for (let mensaje of messages) { %>

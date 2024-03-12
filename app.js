@@ -53,25 +53,20 @@ app.use('/social', rutasSocial);
 const rutasUsuarios = require('./routes/users.routes.js');
 app.use('/users', rutasUsuarios);
 
-app.get('/password', (request, response, next) => {
-  response.render('password', {
-    username: request.session.username || '',
-    permisos: request.session.permisos || [],
-  });
-});
+const rutaPassword = require('./routes/password.routes.js');
+app.use('/password', rutaPassword);
 
 // Guardas las rutas del modulo en el archivo
 const rutasWolverine = require('./routes/wolverine.routes.js');
-
 // Usas esas rutas en la variable
 app.use('/mensajes', rutasWolverine);
-
 
 // Ahora se envia la respuesta con un archivo html que se encuentra en la carpeta views
 app.use((request, response, next) => {
   response.status(404);
   response.render('404', {
     username: request.session.username || '',
+    permisos: request.session.permisos || [],
   });
 });
 

@@ -9,13 +9,14 @@ const wolverineController = require('../controllers/wolverine.controller');
 
 // Incluyes el archivo para verificar si esta autenticado
 const isAuth = require('../util/is-auth');
+const canEnviar_Mensaje = require('../util/can-enviar_mensaje');
   
 // Le dices para esa ruta, que use el controlador con la acción get_wolverine
 // Le pasas el apuntador a la acción que tiene que ejecutar
-router.get('/wolverine', isAuth, wolverineController.get_wolverine);
+router.get('/wolverine', isAuth, canEnviar_Mensaje, wolverineController.get_wolverine);
 
 // Haces lo mismo para las otras rutas, llamando al controlador con sus acciones
-router.post('/wolverine', isAuth, wolverineController.post_wolverine);
+router.post('/wolverine', isAuth, canEnviar_Mensaje, wolverineController.post_wolverine);
 router.get('/:mensaje_id', isAuth, wolverineController.get_mensajes);
 router.get('/', isAuth, wolverineController.get_mensajes);
 

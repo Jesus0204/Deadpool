@@ -36,9 +36,13 @@
           Esta es mi casa
         </a>
 
+        <% for (let funcion of permisos) { %>
+        <% if (funcion.funcion == 'enviar_mensaje') { %>
         <a class="navbar-item" href="/mensajes/wolverine">
           Enviar mensaje a Wolverine
         </a>
+        <% } %>
+        <% } %>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
@@ -58,9 +62,13 @@
           </div>
         </div>
 
-        <a class="navbar-item" href="/password">
-          Password validator
-        </a>
+        <% for (let funcion of permisos) { %>
+          <% if (funcion.funcion == 'password_validator') { %>
+            <a class="navbar-item" href="/password">
+              Password validator
+            </a>
+          <% } %>
+        <% } %>
 
         <div class="navbar-item">
           <a id="boton_disparar" class="button is-danger">
