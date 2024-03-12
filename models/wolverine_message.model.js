@@ -20,12 +20,12 @@ module.exports = class Wolverine_Message {
     //Este método servirá para devolver los objetos del almacenamiento persistente.
     // Métodos estáticos se ejecuta sobre la clase, no un objeto de la clase
     static fetchAll(current_username) {
-        return db.execute('SELECT * FROM Mensaje WHERE username=?', 
+        return db.execute('SELECT * FROM Mensaje WHERE username = ?', 
         [current_username]);
     }
 
     static fetchOne(id, current_username) {
-        return db.execute('SELECT * FROM Mensaje WHERE idMensaje=? AND username=?', 
+        return db.execute('SELECT * FROM Mensaje WHERE idMensaje = ? AND username = ?', 
         [id, current_username]);
     }
 

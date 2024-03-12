@@ -1,4 +1,8 @@
-<%- include('includes/head.ejs', {username: username}) %>
+<%- include('includes/head.ejs', {
+  username: username,
+  permisos: permisos 
+}) %>
+
 <section class="section">
   <div class="container">
     <h1 id="title" class="title">¿¡Un instagram de deadpool?!</h1>
@@ -41,9 +45,14 @@
       <% } %>
 
     </div>
-    <a href="/social/instagram/crear_post">
-      <button class="button is-link">Crear post de instagram</button>
-    </a>
+
+    <% for (let funcion of permisos) { %>
+      <% if (funcion.funcion == 'crear_post') { %>
+        <a href="/social/instagram/crear_post">
+          <button class="button is-link">Crear post de instagram</button>
+        </a>
+      <% } %>
+    <% } %>
   </div>
   </div>
 </section>

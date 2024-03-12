@@ -1,7 +1,8 @@
 exports.get_wolverine = (request, response, next) => {
   response.render('mensaje_wolverine', {
     username: request.session.username || '',
-    csrfToken: request.csrfToken()
+    csrfToken: request.csrfToken(),
+    permisos: request.session.permisos || [],
   });
 };
 
@@ -40,6 +41,7 @@ exports.get_mensajes = (request, response, next) => {
         // Para pasar la variable a ejs, lo pasas de esta forma
         ultimo_mensaje: ultimo_mensaje,
         username: request.session.username || '',
+        permisos: request.session.permisos || [],
       });
     })
     .catch((error) => {

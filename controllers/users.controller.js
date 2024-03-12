@@ -9,6 +9,7 @@ exports.get_login = (request, response, next) => {
     registrar: false,
     error: error,
     csrfToken: request.csrfToken(),
+    permisos: request.session.permisos || [],
     });
 };
 
@@ -24,11 +25,16 @@ exports.post_login = (request, response, next) => {
                 .then(doMatch => {
                     // Si la promesa es verdadero, entonces inicias sesion en la pagina
                     if (doMatch) {
-                        request.session.isLoggedIn = true;
-                        request.session.username = user.username;
-                        return request.session.save(err => {
-                            response.redirect('/mensajes');
-                        });
+                        Usuario.getPermisos(user.username)
+                        .then(([permisos, fieldData]) => {
+                            request.session.isLoggedIn = true;
+                            request.session.permisos = permisos;
+                            console.log(request.session.permisos);
+                            request.session.username = user.username;
+                            return request.session.save(err => {
+                                response.redirect('/mensajes');
+                        })})
+                        .catch((error) => {console.log(error)});
                     // Por si los passwords no hacen match
                     } else {
                         request.session.error = 'El usuario y/o contraseña con incorrectos.';
@@ -63,6 +69,7 @@ exports.get_signup = (request, response, next) => {
         registrar: true,
         error: error,
         csrfToken: request.csrfToken(),
+        permisos: request.session.permisos || [],
     });
 };
 
