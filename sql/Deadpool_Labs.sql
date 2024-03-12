@@ -24,16 +24,53 @@ CREATE TABLE Insta_Post (
     caption VARCHAR(100),
     fecha TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
     imagen VARCHAR(500),
+    PRIMARY KEY(IDInsta_Post)
+);
+
+CREATE TABLE Rol (
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(45),
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE Permiso (
+    id INT NOT NULL AUTO_INCREMENT,
+    funcion VARCHAR(45),
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE Posee (	
+	idRol INT,
+    idPermiso INT,
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY(idRol, idPermiso),
+    FOREIGN KEY(idRol) REFERENCES Rol(id),
+    FOREIGN KEY(idPermiso) REFERENCES Permiso(id)
+);
+
+CREATE TABLE Asigna (	
+	idRol INT,
     username VARCHAR(30),
-    PRIMARY KEY(IDInsta_Post),
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY(idRol, username),
+    FOREIGN KEY(idRol) REFERENCES Rol(id),
     FOREIGN KEY(username) REFERENCES Usuario(username)
 );
 
-INSERT INTO Usuario VALUES ('Jesus0204','Jesus0204','2024-03-07 16:24:04');
+
+INSERT INTO Usuario VALUES 
+('Jesus0204','$2a$12$g4qEIHttkfgOsyIxiIv22ukyLuy1xVHKYJb6hRz1u6H.wUFuzkjtW','2024-03-07 16:24:04'),
+('Deadpool','$2a$12$uhl34uz07jwrrau9GiQ4HOyEsPGcTjxUaY7/kH8e0kr09tQ8D3Nmm','2024-03-07 16:24:04'),
+('Angel','$2a$12$NOTyaeOncqVJiun2xzU3zeaLpJTAKWhRWuPhJBRExKFRQViw/oSD2','2024-03-07 16:24:04'),
+('Alexys','$2a$12$koueEzqKSYkdF7pH5Wxf/OrVTjHVp0.PDzn9HGaHrXsMPWzmdH9ZO','2024-03-07 16:24:04');
 
 INSERT INTO Mensaje VALUES 
 (1,"¡¿Help?!","Don\'t just stand there you ape! Get over here and give me a hand!",'Jesus0204','2024-03-07 16:25:37'),
-(2,'Hello there','General Kenobi','Jesus0204','2024-03-07 16:58:37');
+(2,'Hello there','General Kenobi','Jesus0204','2024-03-07 16:58:37'),
+(3,'Did I just get philosphical?','Life is an endless series of train-wrecks, with only brief, commercial-like breaks of happiness','Jesus0204','2024-03-07 16:58:37'),
+(4,'Pregunta','Como estas Bro? Jalas por unas cheves a cabo piraña el que esta a lado del Oxxo fuera del Tec','Angel','2024-03-07 16:58:37');
 
 INSERT INTO Insta_Post VALUES 
 (1,'Escuchando unos buenos beats','¿A quién más le gusta Solence?','2024-03-07 22:16:32','https://media.npr.org/assets/img/2018/05/11/deadpool2-af0212_pubstill_01_r_rgb_wide-59f49b4c92ec6d13baabb22a2be452199f4b2925-s1600-c85.webp'),
