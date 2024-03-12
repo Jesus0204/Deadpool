@@ -54,9 +54,10 @@ const rutasUsuarios = require('./routes/users.routes.js');
 app.use('/users', rutasUsuarios);
 
 app.get('/password', (request, response, next) => {
-  response.sendFile(
-    path.join(__dirname, 'public', 'password.html')
-  );
+  response.render('password', {
+    username: request.session.username || '',
+    permisos: request.session.permisos || [],
+  });
 });
 
 // Guardas las rutas del modulo en el archivo
