@@ -2,9 +2,12 @@ const Usuario = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 
 exports.get_login = (request, response, next) => {
+    const error = request.session.error || '';
+    request.session.error = '';
     response.render('login', {
     username: request.session.username || '',
     registrar: false,
+    error: error,
     });
 };
 
@@ -27,6 +30,7 @@ exports.post_login = (request, response, next) => {
                         });
                     // Por si los passwords no hacen match
                     } else {
+                        request.session.error = 'El usuario y/o contraseña con incorrectos.';
                         return response.redirect('/users/login');
                     }
                 // Por si hay un error en la libreria o algo
@@ -35,6 +39,7 @@ exports.post_login = (request, response, next) => {
                 });
             // Por si el usuario no existe en la base de datos
         } else {
+            request.session.error = 'El usuario y/o contraseña con incorrectos.';
             response.redirect('/users/login');
         }
     })
@@ -50,9 +55,12 @@ exports.get_logout = (request, response, next) => {
 };
 
 exports.get_signup = (request, response, next) => {
+    const error = request.session.error || '';
+    request.session.error = '';
     response.render('login', {
         username: request.session.username || '',
         registrar: true,
+        error: error,
     });
 };
 
@@ -63,6 +71,8 @@ exports.post_signup = (request, response, next) => {
         response.redirect('/users/login');
     })
     .catch((error) => {
+        request.session.error = 'Nombre de usuario invalido.';
         console.log(error)
+        response.redirect('/users/signup');
     })
 }
