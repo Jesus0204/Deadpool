@@ -123,8 +123,12 @@ ALTER TABLE materiales ADD PorcentajeImpuesto NUMERIC(6,2);
 UPDATE materiales SET PorcentajeImpuesto = 2*clave/1000;
 
 /* ¿Qué consulta usarías para obtener el importe de las entregas es decir, el total en dinero de lo entregado, basado en la cantidad de la entrega y el precio del material y el impuesto asignado? */
+SELECT E.RFC, SUM((precio + impuesto) * cantidad) AS "Total entregado"
+FROM Materiales AS M, Entregan AS E
+WHERE M.clave = E.clave
+GROUP BY E.RFC;
 
-/* Views */
+/* View # 1*/
 CREATE VIEW Provedores_QueEmpiezancon_La
 AS SELECT Entregan.RFC, Entregan.Cantidad, Entregan.Fecha, Entregan.numero
 FROM Proveedores, Entregan
@@ -134,6 +138,40 @@ WHERE RazonSocial LIKE 'La%' and Entregan.RFC = Proveedores.RFC;
 SELECT RFC,Cantidad, Fecha,Numero
 FROM Provedores_QueEmpiezancon_La
 WHERE Numero Between 5000 and 5010;
+
+/* View #2 */
+CREATE VIEW Top2_Proyectos
+AS SELECT * FROM Proyectos LIMIT 2;
+
+SELECT * 
+FROM Top2_Proyectos
+
+/* View #3 */
+CREATE VIEW Numero_Proyectos_Acaban_en_6
+AS SELECT Numero FROM Entregan WHERE Numero LIKE '___6';
+
+SELECT *
+FROM Numero_Proyectos_Acaban_en_6
+
+/* View #4 */
+CREATE VIEW Entregas_1430_OR_1300
+AS SELECT * FROM entregan WHERE clave=1430 OR clave=1300;
+
+SELECT M.descripcion, M.clave, E.RFC, fecha, cantidad
+FROM Entregas_1430_OR_1300 AS E, Materiales AS M
+WHERE E.clave = M.clave;
+
+/* View #5 */
+CREATE VIEW Entregas_2000
+AS SELECT *
+FROM Entregan AS E
+WHERE fecha BETWEEN '2000-01-01' AND '2000-12-31';
+
+/* El RFC de los proveedores que durante el 2000 entregaron en promedio cuando menos 300 materiales. */
+SELECT RFC, Avg(cantidad) AS 'Promedio de entregas'
+FROM Entregas_2000
+GROUP BY RFC
+HAVING Avg(cantidad) < 300;
 
 /* Los materiales (clave y descripción) entregados al proyecto "México sin ti no estamos completos". */
 SELECT M.clave, descripcion 
