@@ -62,6 +62,7 @@ Foo guarda '¿Que resultado obtienes?' (de forma separada)
 ¿Que realiza el operador SET? -
 El operador SET actualiza un registro con lo que le defines. Esto tambien se usa en update Table por ejemplo*/
 
+/* La primera consulta busca en la tabla entregan RFC que incluyan de la A a la D, mientras que la segunda consulta es que empiecen con A. */
 SELECT RFC FROM Entregan WHERE RFC LIKE '[A-D]%';
 SELECT RFC FROM Entregan WHERE RFC LIKE '[^A]%';
 
@@ -76,7 +77,6 @@ FROM Entregan
 WHERE Numero Between 5000 and 5010;
 
 /* Para filtrar rangos de fecha se puede usar el between y poner la fecha de inicio, y la fecha del fin usando el between */
-
 SELECT RFC,Cantidad, Fecha,Numero
 FROM Entregan
 WHERE Numero Between 5000 and 5010 AND
@@ -84,8 +84,7 @@ Exists ( SELECT RFC
 FROM Proveedores
 WHERE RazonSocial LIKE 'La%' and Entregan.RFC = Proveedores.RFC);
 
-/* ¿Qué hace la consulta? - La consulta regresa regsitros donde el numero de entrega este entre 5000 y 5010
-donde aparte la razon social del provedor inicie con La (como la frague)
+/* ¿Qué hace la consulta? - La consulta regresa registros donde el número de entrega este entre 5000 y 5010 donde aparte la razón social del proveedor inicie con La (como la frague).
 
 ¿Qué función tiene el paréntesis ( ) después de EXISTS? - 
 Se usa una subconsulta donde ahi saca el RFC de los provedores que inician con La. 
@@ -103,12 +102,13 @@ WHERE RazonSocial LIKE 'La%' and Entregan.RFC = Proveedores.RFC);
 /* Tomando de base la consulta anterior del EXISTS, realiza el query que devuelva el mismo resultado, pero usando el operador NOT IN */
 
 
-/* ¿Qué hace la siguiente sentencia? Explica por qué. */
-
+/* ¿Qué hace la siguiente sentencia? Explica por qué. 
+Saca los primeros dos registros de la tabla de proyectos. 
+Es una palabra reservada que no funciona en todos los sistemas DB (como MYSQL). Ahí se tiene que usar top.*/
 SELECT TOP 2 * FROM Proyectos;
 
-/* ¿Qué sucede con la siguiente consulta? Explica por qué. */
-
+/* ¿Qué sucede con la siguiente consulta? Explica por qué. 
+Esta consulta está incorrecta ya que Numero lo toma como variable y es una columna de la tabla por lo que regresa error. */
 SELECT TOP Numero FROM Proyectos;
 
 /* Modifica la tabla materiales y le agrega columna PorcentajeImpuesto Numerica */
@@ -170,9 +170,48 @@ WHERE descripcion LIKE '%ub%'
 /* Denominación y suma del total a pagar para todos los proyectos. */
 
 /* Denominación, RFC y RazonSocial de los proveedores que se suministran materiales al proyecto Televisa en acción que no se encuentran apoyando al proyecto Educando en Coahuila (Solo usando vistas). */
+CREATE VIEW Proyectos_Televisa AS
+SELECT DISTINCT denominacion, Prov.RFC, Prov.RazonSocial
+FROM proveedores AS Prov, entregan AS E, proyectos AS P
+WHERE Prov.rfc = E.rfc AND E.numero = P.numero AND 
+denominacion = 'Televisa en acción';
 
-/* Denominación, RFC y RazonSocial de los proveedores que se suministran materiales al proyecto Televisa en acción que no se encuentran apoyando al proyecto Educando en Coahuila (Sin usar vistas, utiliza not in, in o exists). */
+CREATE VIEW Proyectos_Educando_Coahuila AS
+SELECT Prov.RazonSocial
+FROM proveedores AS Prov, entregan AS E, proyectos AS P
+WHERE Prov.rfc = E.rfc AND E.numero = P.numero AND 
+P.denominacion = 'Educando en Coahuila';
+
+SELECT DISTINCT denominacion, RFC, RazonSocial
+FROM Proyectos_Televisa 
+WHERE RazonSocial NOT IN (SELECT RazonSocial FROM Proyectos_Educando_Coahuila);
+
+/* Denominación, RFC y RazonSocial de los proveedores que se suministran materiales al proyecto Televisa en acción que no se encuentran apoyando al proyecto Educando en Coahuila 
+(Sin usar vistas, utiliza not in, in o exists). */
+SELECT DISTINCT denominacion, Prov.RFC, Prov.RazonSocial
+FROM proveedores AS Prov, entregan AS E, proyectos AS P
+WHERE Prov.rfc = E.rfc AND E.numero = P.numero AND 
+denominacion = 'Televisa en acción' AND 
+Prov.RazonSocial NOT IN (SELECT Prov.RazonSocial
+FROM proveedores AS Prov, entregan AS E, proyectos AS P
+WHERE Prov.rfc = E.rfc AND E.numero = P.numero AND 
+P.denominacion = 'Educando en Coahuila');
 
 /* Costo de los materiales y los Materiales que son entregados al proyecto Televisa en acción cuyos proveedores también suministran materiales al proyecto Educando en Coahuila. */
+CREATE VIEW Materiales_Televisa AS
+SELECT precio, descripcion, Prov.RazonSocial
+FROM Materiales As M, entregan AS E, proyectos AS P, proveedores AS Prov
+WHERE M.clave = E.clave AND E.numero = P.numero AND E.rfc = Prov.rfc AND 
+P.denominacion = 'Televisa en acción';
+
+CREATE VIEW Provedores_coahuila AS
+SELECT Prov.RazonSocial
+FROM Materiales As M, entregan AS E, proyectos AS P, proveedores AS Prov
+WHERE M.clave = E.clave AND E.numero = P.numero AND E.rfc = Prov.rfc AND
+P.denominacion = 'Educando en Coahuila';
+
+SELECT precio, descripcion, RazonSocial
+FROM Materiales_Televisa
+WHERE RazonSocial IN (SELECT RazonSocial FROM Provedores_coahuila);
 
 /* Nombre del material, cantidad de veces entregados y total del costo de dichas entregas por material de todos los proyectos. */
