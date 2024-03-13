@@ -5,6 +5,7 @@ No aparecería, ya que en entregan solo se encuentran los registros de lo que s�
 Habría que usar una subconsulta para poder hacer esto por ejemplo. */
 
 /* ¿Cuál sería una consulta que obtuviera el mismo resultado sin usar el operador Unión? Compruébalo. */
+SELECT * FROM entregan WHERE clave=1430 OR clave=1300;
 
 /* ¿Cómo está definido el número de tuplas de este resultado en términos del número de tuplas de entregan y de materiales? 
 Que se suman las tuplas que tiene materiales con las de entrega, y pone todas las combinaciones posibles (un provedor, con cada material, precio, etc. */
@@ -100,7 +101,12 @@ FROM Proveedores
 WHERE RazonSocial LIKE 'La%' and Entregan.RFC = Proveedores.RFC);
 
 /* Tomando de base la consulta anterior del EXISTS, realiza el query que devuelva el mismo resultado, pero usando el operador NOT IN */
-
+SELECT RFC,Cantidad, Fecha,Numero
+FROM Entregan
+WHERE Numero Between 5000 and 5010 AND
+RFC NOT In (SELECT RFC
+FROM Proveedores
+WHERE RazonSocial NOT LIKE 'La%' and Entregan.RFC = Proveedores.RFC);
 
 /* ¿Qué hace la siguiente sentencia? Explica por qué. 
 Saca los primeros dos registros de la tabla de proyectos. 
@@ -168,6 +174,11 @@ FROM Materiales
 WHERE descripcion LIKE '%ub%'
 
 /* Denominación y suma del total a pagar para todos los proyectos. */
+SELECT denominacion, SUM((precio + impuesto) * cantidad) AS "Total a pagar"
+FROM Materiales AS M, Entregan AS E, Proyectos AS P
+WHERE M.clave = E.clave AND E.numero = P.numero
+GROUP BY denominacion
+ORDER BY denominacion;
 
 /* Denominación, RFC y RazonSocial de los proveedores que se suministran materiales al proyecto Televisa en acción que no se encuentran apoyando al proyecto Educando en Coahuila (Solo usando vistas). */
 CREATE VIEW Proyectos_Televisa AS
@@ -215,3 +226,9 @@ FROM Materiales_Televisa
 WHERE RazonSocial IN (SELECT RazonSocial FROM Provedores_coahuila);
 
 /* Nombre del material, cantidad de veces entregados y total del costo de dichas entregas por material de todos los proyectos. */
+SELECT M.descripcion, Count(E.clave) AS 'Cantidad Entregado', 
+Sum((M.precio + M.impuesto) * E.cantidad) AS 'Total de costo'
+FROM Entregan As E, Materiales AS M
+WHERE E.clave = M.clave
+GROUP BY E.clave
+ORDER BY M.descripcion;
