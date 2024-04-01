@@ -33,15 +33,15 @@ exports.get_instagram = (request, response, next) => {
 exports.post_crear_post = (request, response, next) => {
     // Creas una nueva instancia de la clase con su titulo y mensaje
     const instagram_post =
-        new Instagram_Post(request.body.titulo, request.body.caption, request.body.imagen);
+        new Instagram_Post(request.body.titulo, request.body.caption, request.file.filename);
         
     instagram_post.save()
     .then(([rows, fieldData]) => {
         response.redirect('/social/instagram');
         })
         .catch((error) => {
-            console.log(error)
-        });;
+            console.log(error);
+        });
 };
 
 exports.get_trailer = (request, response, next) => {

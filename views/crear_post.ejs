@@ -6,14 +6,14 @@
 <section class="section">
     <div class="container">
         <h1 id="title" class="title">Sube una publicacion de instagram</h1>
-        <form action="/social/instagram/crear_post" method="POST">
+        <form action="/social/instagram/crear_post" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <label class="label" for="titulo">Titulo de post</label>
             <input name="titulo" class="input" type="text" id="titulo"><br>
             <label class="label" for="caption">Caption de post</label>
             <input name="caption" class="input" type="text" id="caption"><br>
             <label class="label" for="imagen">Imagen de post</label>
-            <input name="imagen" class="input" type="text" id="imagen"><br><br>
+            <input name="imagen" class="input" type="file" id="imagen"><br><br>
             <input class="button is-link" type="submit" value="Subir">
         </form>
         <br>

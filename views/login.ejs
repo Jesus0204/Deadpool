@@ -16,9 +16,9 @@
         <form action="/users/<% if (registrar) { %>signup <% } else { %>login <% } %>" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <label class="label" for="username">Nombre de Usuario</label>
-            <input name="username" class="input" type="text" id="username"><br>
+            <input name="username" class="input is-rounded" type="text" id="username"><br>
             <label class="label" for="password">Contraseña</label>
-            <input name="password" class="input" type="password" id="password"><br><br>
+            <input name="password" class="input is-rounded" type="password" id="password"><br><br>
             <input class="button is-success" type="submit"
                 value="<% if (registrar) { %>Registrarse <% } else { %>Log in <% } %>">
         </form>
