@@ -72,14 +72,29 @@ SELECT Descripcion
 FROM Materiales 
 WHERE Clave NOT IN 
 (SELECT E.clave FROM Entregan AS E, Proyectos AS P 
-WHERE E.numero = P.numero AND P.Denominacion = 'CIT Yucatán')
+WHERE E.numero = P.numero AND P.Denominacion = 'CIT Yucatán');
+
+/* Para que la siguiente consulta arroge resultados se agregaron los siguientes registros */
+INSERT INTO Proveedores VALUES ('VAGO780901', 'Vago Inc.');
+INSERT INTO Entregan VALUES ('5000', 'VAGO780901', '5000', '2020-02-01', '350');
 
 /* Razón social y promedio de cantidad entregada de los proveedores 
 cuyo promedio de cantidad entregada es mayor al promedio de la cantidad entregada 
 por el proveedor con el RFC 'VAGO780901'. */
+SELECT P.RFC, AVG(E.cantidad) AS 'Promedio cantidad Entregada'
+FROM Proveedores AS P, Entregan AS E
+WHERE P.RFC = E.RFC
+GROUP BY P.RFC
+HAVING AVG(Cantidad) > (SELECT AVG(Cantidad) FROM Entregan WHERE RFC = 'VAGO780901');
 
 /* RFC, razón social de los proveedores que participaron en el proyecto 'Infonavit Durango' 
 y cuyas cantidades totales entregadas en el 2000 fueron mayores 
 a las cantidades totales entregadas en el 2001. */
-SELECT RFC, razonsocial
-FROM Proveedores
+SELECT P.RFC, P.razonsocial 
+FROM Proveedores AS P, Entregan AS E
+WHERE P.RFC = E.RFC AND 
+P.RFC IN (SELECT E.RFC FROM Entregan AS E, Proyectos AS P 
+WHERE E.numero = P.numero AND P.Denominacion = 'Infonavit Durango') 
+GROUP BY P.RFC
+HAVING (SELECT SUM(Cantidad) FROM entregan WHERE YEAR(fecha) = '2000') > 
+(SELECT SUM(Cantidad) FROM Entregan WHERE YEAR(fecha) = '2001');
