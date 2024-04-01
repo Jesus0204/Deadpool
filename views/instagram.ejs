@@ -17,14 +17,14 @@
         <div class="card">
           <div class="card-image">
             <figure class="image is-5by3">
-              <img src="uploads/<%= insta_post.imagen %>">
+              <img src="/uploads/<%= insta_post.imagen %>">
             </figure>
           </div>
           <div class="card-content">
             <div class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img src="uploads/<%= insta_post.imagen %>">
+                  <img src="/uploads/<%= insta_post.imagen %>">
                 </figure>
               </div>
               <div class="media-content">
@@ -47,11 +47,11 @@
     </div>
 
     <% for (let funcion of permisos) { %>
-      <% if (funcion.funcion == 'crear_post') { %>
-        <a href="/social/instagram/crear_post">
-          <button class="button is-link">Crear post de instagram</button>
-        </a>
-      <% } %>
+    <% if (funcion.funcion == 'crear_post') { %>
+    <a href="/social/instagram/crear_post">
+      <button class="button is-link">Crear post de instagram</button>
+    </a>
+    <% } %>
     <% } %>
   </div>
   </div>
