@@ -81,7 +81,7 @@ INSERT INTO Entregan VALUES ('5000', 'VAGO780901', '5000', '2020-02-01', '350');
 /* Razón social y promedio de cantidad entregada de los proveedores 
 cuyo promedio de cantidad entregada es mayor al promedio de la cantidad entregada 
 por el proveedor con el RFC 'VAGO780901'. */
-SELECT P.RFC, AVG(E.cantidad) AS 'Promedio cantidad Entregada'
+SELECT P.razonsocial, AVG(E.cantidad) AS 'Promedio cantidad Entregada'
 FROM Proveedores AS P, Entregan AS E
 WHERE P.RFC = E.RFC
 GROUP BY P.RFC
