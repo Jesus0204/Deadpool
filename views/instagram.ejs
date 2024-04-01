@@ -7,12 +7,18 @@
   <div class="container">
     <h1 id="title" class="title">¿¡Un instagram de deadpool?!</h1>
     <div class="block">
-      <figure>
-        <img id="imagen_disparar" src="">
-      </figure>
+      <% for (let funcion of permisos) { %>
+      <% if (funcion.funcion == 'crear_post') { %>
+      <a href="/social/instagram/crear_post">
+        <button class="button is-link">Crear post de instagram</button>
+      </a>
+      <% } %>
+      <% } %>
     </div>
     <div class="columns">
+      <% let columns = 0 %>
       <% for (let insta_post of instagram_post) { %>
+      <% columns++ %>
       <div class="column">
         <div class="card">
           <div class="card-image">
@@ -42,18 +48,18 @@
           </div>
         </div>
       </div>
-      <% } %>
 
+      <% if (columns % 4 == 0) { %>
     </div>
-
-    <% for (let funcion of permisos) { %>
-    <% if (funcion.funcion == 'crear_post') { %>
-    <a href="/social/instagram/crear_post">
-      <button class="button is-link">Crear post de instagram</button>
-    </a>
-    <% } %>
-    <% } %>
-  </div>
+    <div class="columns">
+      <% } %>
+      <% } %>
+    </div>
+    <div class="block">
+      <figure>
+        <img id="imagen_disparar" src="">
+      </figure>
+    </div>
   </div>
 </section>
 <%- include('includes/foot.ejs') %>
