@@ -4,66 +4,96 @@
 }) %>
 
 <section class="section">
-  <div class="container">
-    <p id="title" class="title is-2">Hello there</p>
-    <% let mega_fan = false %>
-    <% for (let funcion of permisos) { %>
-      <% if (funcion.funcion == 'enviar_mensaje') { %>
+    <div class="container">
+        <p id="title" class="title is-2">Hello there</p>
+        <% let mega_fan = false %>
+        <% for (let funcion of permisos) { %>
+        <% if (funcion.funcion == 'enviar_mensaje') { %>
         <% mega_fan = true; %>
-      <% } %>
-    <% } %>
+        <% } %>
+        <% } %>
 
-    <% if (mega_fan == true) { %>
+        <% if (mega_fan == true) { %>
         <h2 class="subtitle is-4">Gracias por ser un Ultimate fan!</h2>
-      <% } else {  %>
-    <h2 class="subtitle is-4">¡Todavía no alcansas el estatus de Ultimate Fan. Sigue intentando!</h2>
-    <% } %>
+        <% } else {  %>
+        <h2 class="subtitle is-4">¡Todavía no alcansas el estatus de Ultimate Fan. Sigue intentando!</h2>
+        <% } %>
 
-    <div class="block">
-      <figure>
-        <img id="imagen_disparar"
-          src="https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/02/1484222978-deadpool.jpg?resize=1200:*">
-      </figure>
-    </div>
-
-    <% if (mega_fan == true) { %>
-      <% if (messages.length < 1) { %>
-      <div class="notification is-info">
-        <button class="delete"></button>
-        No existe el mensaje que estas buscando
-      </div>
-      <% } %>
-    <% } %>
-
-
-    <div class="columns">
-      <% for (let mensaje of messages) { %>
-      <div class="column">
-        <div class="card">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4"> <%= mensaje.titulo %> </p>
-                <p class="subtitle is-6">@Deadp00l!</p>
-              </div>
-            </div>
-
-            <div class="content">
-              <%= mensaje.mensaje %>
-              <br>
-            </div>
-          </div>
+        <div class="block">
+            <figure>
+                <img id="imagen_disparar"
+                    src="https://hips.hearstapps.com/digitalspyuk.cdnds.net/17/02/1484222978-deadpool.jpg?resize=1200:*">
+            </figure>
         </div>
-      </div>
-      <% } %>
+
+        <% if (mega_fan == true) { %>
+        <input id="buscar" class="input is-info" type="text" placeholder="Buscar...">
+        <br>
+        <% if (messages.length < 1) { %>
+        <div class="notification is-info">
+            <button class="delete"></button>
+            No existe el mensaje que estas buscando
+        </div>
+        <% } %>
+        <% } %>
+
+        <div id="respuesta_ajax">
+            <div class="columns">
+                <% for (let mensaje of messages) { %>
+                <div class="column">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-4"> <%= mensaje.titulo %> </p>
+                                    <p class="subtitle is-6">@Deadp00l!</p>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                <%= mensaje.mensaje %>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <br>
+        <% if(ultimo_mensaje != '') { %>
+        El último mensaje fue <%= ultimo_mensaje %>.
+        <% } %>
     </div>
-    <br>
-    <% if(ultimo_mensaje != '') { %>
-    El último mensaje fue <%= ultimo_mensaje %>.
-    <% } %>
-  </div>
 </section>
 <%- include('includes/foot.ejs') %>
+<script>
+    const accion_asincrona = () => {
+        console.log('Buscando...');
+        const valor_busqueda = document.getElementById('buscar').value;
+
+        //función que manda la petición asíncrona
+        fetch('/mensajes/buscar/' + valor_busqueda, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((result) => {
+            console.log(result);
+            return result.json(); //Regresa otra promesa
+        }).then((data) => {
+            console.log(data);
+            let html = '';
+            document.getElementById('respuesta_ajax').innerHTML = html;
+            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+        }).catch(err => {
+            console.log(err);
+        });
+    };
+
+    const buscar = document.querySelector('#buscar');
+    buscar.addEventListener('input', accion_asincrona);
+</script>
 </body>
 
 </html>

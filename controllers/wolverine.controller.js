@@ -15,15 +15,17 @@ exports.post_wolverine = (request, response, next) => {
     new Wolverine_Message(request.body.titulo, request.body.mensaje, request.session.username);
   // Llamas al método de la clase que guarda eso en el arreglo
   message.save()
-  .then(([rows, fieldData]) => {
-    // Guardas una cookie mandandola en el header, guardando el último mensaje del usuario
-    // La cookie es signed para que sea segura y no la puedan modificar
-    response.cookie("ultimo_mensaje", request.body.mensaje, {
-      signed: true
+    .then(([rows, fieldData]) => {
+      // Guardas una cookie mandandola en el header, guardando el último mensaje del usuario
+      // La cookie es signed para que sea segura y no la puedan modificar
+      response.cookie("ultimo_mensaje", request.body.mensaje, {
+        signed: true
+      });
+      response.redirect('/mensajes');
+    })
+    .catch((error) => {
+      console.log(error)
     });
-    response.redirect('/mensajes');
-  })
-  .catch((error) => {console.log(error)});
 };
 
 exports.get_mensajes = (request, response, next) => {
@@ -35,7 +37,7 @@ exports.get_mensajes = (request, response, next) => {
   // Si la promesa se ejecuto, pasas rows (donde se guarda la info) a mensajes
   // De esa forma el ejs sabe leer los datos
   Wolverine_Message.fetch(request.params.mensaje_id, request.session.username)
-  .then(([rows, fieldData]) => {
+    .then(([rows, fieldData]) => {
       response.render('mensajes', {
         messages: rows,
         // Para pasar la variable a ejs, lo pasas de esta forma
@@ -48,4 +50,17 @@ exports.get_mensajes = (request, response, next) => {
       console.log(error);
     });
 
+};
+
+// La funcion que usa la rta vacia para la busqueda
+exports.get_buscar = (request, response, next) => {
+  Wolverine_Message.search(request.params.valor_busqueda)
+    .then(([titulos, fieldData]) => {
+      return response.status(200).json({
+        messages: titulos
+      });
+    })
+    .catch((error) => {
+      console.log(error)
+    });
 };
