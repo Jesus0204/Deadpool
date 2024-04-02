@@ -35,4 +35,9 @@ module.exports = class Instagram_Post {
             return this.fetchAll();
         }
     }
+
+    static search(valor_busqueda) {
+        return db.execute(`SELECT * FROM Insta_Post
+        WHERE titulo LIKE ?`, ['%' + valor_busqueda + '%']);
+    }
 }

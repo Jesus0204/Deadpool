@@ -14,6 +14,8 @@ const canCreate_Post = require('../util/can-create_post');
 router.get('/deadpool!', socialController.get_deadpool);
 router.get('/instagram/crear_post', isAuth, canCreate_Post, socialController.get_crear_post);
 router.post('/instagram/crear_post', isAuth, canCreate_Post, socialController.post_crear_post);
+router.get('/instagram/buscar/:valor_busqueda', isAuth, socialController.get_buscar);
+router.get('/instagram/buscar/', isAuth, socialController.get_buscar);
 router.get('/instagram/:insta_id', isAuth, socialController.get_instagram);
 router.get('/instagram/', isAuth, socialController.get_instagram);
 router.get('/trailer', socialController.get_trailer);

@@ -4,65 +4,141 @@
 }) %>
 
 <section class="section">
-  <div class="container">
-    <h1 id="title" class="title">¿¡Un instagram de deadpool?!</h1>
-    <div class="block">
-      <% for (let funcion of permisos) { %>
-      <% if (funcion.funcion == 'crear_post') { %>
-      <a href="/social/instagram/crear_post">
-        <button class="button is-link">Crear post de instagram</button>
-      </a>
-      <% } %>
-      <% } %>
-    </div>
-    <div class="columns">
-      <% let columns = 0 %>
-      <% for (let insta_post of instagram_post) { %>
-      <% columns++ %>
-      <div class="column">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-5by3">
-              <img src="/uploads/<%= insta_post.imagen %>">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="/uploads/<%= insta_post.imagen %>">
-                </figure>
-              </div>
-              <div class="media-content">
-                <p class="title is-4"><%= insta_post.titulo %></p>
-                <p class="subtitle is-6">@deadp00l!</p>
-              </div>
-            </div>
-
-            <div class="content">
-              <%= insta_post.caption %>
-              <br>
-              <br>
-              <time datetime="2024-1-1"><%= insta_post.fecha %></time>
-            </div>
-          </div>
+    <div class="container">
+        <h1 id="title" class="title">¿¡Un instagram de deadpool?!</h1>
+        <div class="block">
+            <% for (let funcion of permisos) { %>
+            <% if (funcion.funcion == 'crear_post') { %>
+            <a href="/social/instagram/crear_post">
+                <button class="button is-link">Crear post de instagram</button>
+            </a>
+            <% } %>
+            <% } %>
         </div>
-      </div>
+        <input id="buscar" class="input is-info" type="text" placeholder="Buscar...">
+        <br>
+        <br>
+        <div id="respuesta_ajax">
+            <div class="columns">
+                <% let columns = 0 %>
+                <% for (let insta_post of instagram_post) { %>
+                <% columns++ %>
+                <div class="column">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-5by3">
+                                <img src="/uploads/<%= insta_post.imagen %>">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="/uploads/<%= insta_post.imagen %>">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4"><%= insta_post.titulo %></p>
+                                    <p class="subtitle is-6">@deadp00l!</p>
+                                </div>
+                            </div>
 
-      <% if (columns % 4 == 0) { %>
+                            <div class="content">
+                                <%= insta_post.caption %>
+                                <br>
+                                <br>
+                                <time datetime="2024-1-1"><%= insta_post.fecha %></time>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <% if (columns % 4 == 0) { %>
+            </div>
+            <div class="columns">
+                <% } %>
+                <% } %>
+            </div>
+        </div>
+        <div class="block">
+            <figure>
+                <img id="imagen_disparar" src="">
+            </figure>
+        </div>
     </div>
-    <div class="columns">
-      <% } %>
-      <% } %>
-    </div>
-    <div class="block">
-      <figure>
-        <img id="imagen_disparar" src="">
-      </figure>
-    </div>
-  </div>
 </section>
 <%- include('includes/foot.ejs') %>
+<script>
+    const accion_asincrona = () => {
+        console.log('Buscando...');
+        const valor_busqueda = document.getElementById('buscar').value;
+
+        //función que manda la petición asíncrona
+        fetch('/social/instagram/buscar/' + valor_busqueda, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((result) => {
+            console.log(result);
+            return result.json(); //Regresa otra promesa
+        }).then((data) => {
+            console.log(data);
+            let html = '';
+
+            html += '<div class="columns">';
+                let columns = 0;
+                for (let insta_post of data.instagram_post) {
+                    columns++;
+                    html += `
+                        <div class="column">
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image is-5by3">
+                                        <img src="/uploads/${insta_post.imagen}">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <figure class="image is-48x48">
+                                                <img src="/uploads/${insta_post.imagen}">
+                                            </figure>
+                                        </div>
+                                        <div class="media-content">
+                                            <p class="title is-4">${insta_post.titulo}</p>
+                                            <p class="subtitle is-6">@deadp00l!</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="content">
+                                        ${insta_post.caption}
+                                        <br>
+                                        <br>
+                                        <time datetime="2024-1-1">${insta_post.fecha}</time>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+
+                        if (columns % 4 == 0) {
+                            html += ` 
+                            </div>
+                            <div class="columns">`
+                        }
+                    };
+                    html += '</div>';
+
+            document.getElementById('respuesta_ajax').innerHTML = html;
+            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+        }).catch(err => {
+            console.log(err);
+        });
+    };
+
+    const buscar = document.querySelector('#buscar');
+    buscar.addEventListener('input', accion_asincrona);
+</script>
 </body>
 
 </html>

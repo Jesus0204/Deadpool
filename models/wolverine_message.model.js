@@ -37,9 +37,9 @@ module.exports = class Wolverine_Message {
         }
     }
 
-    static search(valor_busqueda) {
+    static search(valor_busqueda, current_username) {
         return db.execute(`SELECT * FROM Mensaje
-        WHERE titulo LIKE ?`, ['%' + valor_busqueda + '%']);
+        WHERE titulo LIKE ? AND username = ? `, ['%' + valor_busqueda + '%', current_username]);
     }
 
 }

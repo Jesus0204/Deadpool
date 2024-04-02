@@ -20,6 +20,7 @@ router.post('/wolverine', isAuth, canEnviar_Mensaje, wolverineController.post_wo
 
 // Haces la ruta oculta para buscar
 router.get('/buscar/:valor_busqueda', isAuth, wolverineController.get_buscar);
+router.get('/buscar/', isAuth, wolverineController.get_buscar);
 
 router.get('/:mensaje_id', isAuth, wolverineController.get_mensajes);
 router.get('/', isAuth, wolverineController.get_mensajes);

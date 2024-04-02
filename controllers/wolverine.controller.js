@@ -54,7 +54,7 @@ exports.get_mensajes = (request, response, next) => {
 
 // La funcion que usa la rta vacia para la busqueda
 exports.get_buscar = (request, response, next) => {
-  Wolverine_Message.search(request.params.valor_busqueda)
+  Wolverine_Message.search(request.params.valor_busqueda || '', request.session.username)
     .then(([titulos, fieldData]) => {
       return response.status(200).json({
         messages: titulos

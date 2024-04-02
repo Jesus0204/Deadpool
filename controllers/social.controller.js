@@ -13,7 +13,7 @@ exports.get_crear_post = (request, response, next) => {
     });
 };
 
-const Instagram_Post = require('../models/create_instagram_post.model');
+const Instagram_Post = require('../models/instagram_post.model');
 
 exports.get_instagram = (request, response, next) => {
 
@@ -49,4 +49,16 @@ exports.get_trailer = (request, response, next) => {
         username: request.session.username || '',
         permisos: request.session.permisos || [],
     });
+};
+
+exports.get_buscar = (request, response, next) => {
+    Instagram_Post.search(request.params.valor_busqueda || '')
+        .then(([titulos, fieldData]) => {
+            return response.status(200).json({
+                instagram_post: titulos
+            });
+        })
+        .catch((error) => {
+            console.log(error)
+        });
 };
