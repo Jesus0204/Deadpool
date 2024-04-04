@@ -19,6 +19,13 @@
         <br>
         <br>
         <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>">
+        <div id="notificacion" class="is-hidden">
+            <div class="notification is-info">
+                <button class="delete"></button>
+                El post fue eliminado.
+            </div>
+        </div>
+        <br>
         <div id="respuesta_ajax">
             <div class="columns">
                 <% let columns = 0 %>
@@ -130,12 +137,12 @@
                                         <% for (let funcion of permisos) { %>
                                         <% if (funcion.funcion == 'crear_post') { %>
                                         <button class="button is-danger is-light"
-                                            onclick="eliminar('<%= insta_post.IDInsta_Post %>')">
+                                            onclick="eliminar(${insta_post.IDInsta_Post}')">
                                             Eliminar
                                         </button>
                                         <% } %>
                                         <% } %>`
-                                    html += `</div>
+                html += `</div>
                                 </div>
                             </div>
                         </div>`
@@ -212,12 +219,12 @@
                                 <% for (let funcion of permisos) { %>
                                 <% if (funcion.funcion == 'crear_post') { %>
                                 <button class="button is-danger is-light"
-                                    onclick="eliminar('<%= insta_post.IDInsta_Post %>')">
+                                    onclick="eliminar(${insta_post.IDInsta_Post})">
                                     Eliminar
                                 </button>
                                 <% } %>
                                 <% } %>`
-                             html += `</div>
+                html += `</div>
                         </div>
                     </div>
                 </div>`
@@ -230,11 +237,22 @@
             };
             html += '</div>';
 
+            document.getElementById('notificacion').classList.remove('is-hidden');
+
             document.getElementById('respuesta_ajax').innerHTML = html;
         }).catch(err => {
             console.log(err);
         });
     };
+    document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            const $notification = $delete.parentNode;
+
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
+    });
 </script>
 </body>
 

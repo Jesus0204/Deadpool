@@ -71,8 +71,7 @@ exports.post_delete = (request, response, next) => {
             Instagram_Post.fetch()
                 .then(([posts, fieldData]) => {
                     return response.status(200).json({
-                        instagram_post: posts,
-                        permisos: request.session.permisos || []
+                        instagram_post: posts
                     })
                 })
                 .catch((error) => {
