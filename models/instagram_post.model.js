@@ -40,4 +40,8 @@ module.exports = class Instagram_Post {
         return db.execute(`SELECT * FROM Insta_Post
         WHERE titulo LIKE ?`, ['%' + valor_busqueda + '%']);
     }
+
+    static delete(id) {
+        return db.execute('DELETE FROM Insta_Post WHERE IDInsta_Post = ?', [id]);
+    }
 }

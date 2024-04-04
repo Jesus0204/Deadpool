@@ -18,26 +18,27 @@ const Instagram_Post = require('../models/instagram_post.model');
 exports.get_instagram = (request, response, next) => {
 
     Instagram_Post.fetch(request.params.insta_id).
-        then(([rows, fieldData]) => {
+    then(([rows, fieldData]) => {
             response.render('instagram', {
                 username: request.session.username || '',
                 instagram_post: rows,
                 permisos: request.session.permisos || [],
+                csrfToken: request.csrfToken()
             });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 };
 
 exports.post_crear_post = (request, response, next) => {
     // Creas una nueva instancia de la clase con su titulo y mensaje
     const instagram_post =
         new Instagram_Post(request.body.titulo, request.body.caption, request.file.filename);
-        
+
     instagram_post.save()
-    .then(([rows, fieldData]) => {
-        response.redirect('/social/instagram');
+        .then(([rows, fieldData]) => {
+            response.redirect('/social/instagram');
         })
         .catch((error) => {
             console.log(error);
@@ -61,4 +62,25 @@ exports.get_buscar = (request, response, next) => {
         .catch((error) => {
             console.log(error)
         });
+};
+
+exports.post_delete = (request, response, next) => {
+    console.log(request.session.permisos);
+    Instagram_Post.delete(request.body.id)
+        .then(() => {
+            Instagram_Post.fetch()
+                .then(([posts, fieldData]) => {
+                    return response.status(200).json({
+                        instagram_post: posts,
+                        permisos: request.session.permisos || []
+                    })
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
 };

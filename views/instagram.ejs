@@ -18,6 +18,7 @@
         <input id="buscar" class="input is-info" type="text" placeholder="Buscar...">
         <br>
         <br>
+        <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>">
         <div id="respuesta_ajax">
             <div class="columns">
                 <% let columns = 0 %>
@@ -49,6 +50,15 @@
                                 <br>
                                 <time datetime="2024-1-1"><%= insta_post.fecha %></time>
                             </div>
+                            <br>
+                            <% for (let funcion of permisos) { %>
+                            <% if (funcion.funcion == 'crear_post') { %>
+                            <button class="button is-danger is-light"
+                                onclick="eliminar('<%= insta_post.IDInsta_Post %>')">
+                                Eliminar
+                            </button>
+                            <% } %>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -87,10 +97,10 @@
             let html = '';
 
             html += '<div class="columns">';
-                let columns = 0;
-                for (let insta_post of data.instagram_post) {
-                    columns++;
-                    html += `
+            let columns = 0;
+            for (let insta_post of data.instagram_post) {
+                columns++;
+                html += `
                         <div class="column">
                             <div class="card">
                                 <div class="card-image">
@@ -116,18 +126,27 @@
                                         <br>
                                         <br>
                                         <time datetime="2024-1-1">${insta_post.fecha}</time>
-                                    </div>
+                                        <br>
+                                        <% for (let funcion of permisos) { %>
+                                        <% if (funcion.funcion == 'crear_post') { %>
+                                        <button class="button is-danger is-light"
+                                            onclick="eliminar('<%= insta_post.IDInsta_Post %>')">
+                                            Eliminar
+                                        </button>
+                                        <% } %>
+                                        <% } %>`
+                                    html += `</div>
                                 </div>
                             </div>
                         </div>`
 
-                        if (columns % 4 == 0) {
-                            html += ` 
+                if (columns % 4 == 0) {
+                    html += ` 
                             </div>
                             <div class="columns">`
-                        }
-                    };
-                    html += '</div>';
+                }
+            };
+            html += '</div>';
 
             document.getElementById('respuesta_ajax').innerHTML = html;
             //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
@@ -138,6 +157,84 @@
 
     const buscar = document.querySelector('#buscar');
     buscar.addEventListener('input', accion_asincrona);
+
+    const eliminar = (id) => {
+        //El token de protección CSRF
+        const csrf = document.getElementById('_csrf').value;
+
+        //función que manda la petición asíncrona
+        fetch('/social/instagram/delete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'csrf-token': csrf
+            },
+            body: JSON.stringify({
+                id: id
+            })
+        }).then((result) => {
+            return result.json(); //Regresa otra promesa
+        }).then((data) => {
+            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+            let html = '';
+
+            html += '<div class="columns">';
+            let columns = 0;
+            for (let insta_post of data.instagram_post) {
+                columns++;
+                html += `
+                <div class="column">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-5by3">
+                                <img src="/uploads/${insta_post.imagen}">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="/uploads/${insta_post.imagen}">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">${insta_post.titulo}</p>
+                                    <p class="subtitle is-6">@deadp00l!</p>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                ${insta_post.caption}
+                                <br>
+                                <br>
+                                <time datetime="2024-1-1">${insta_post.fecha}</time>
+                                <br>
+                                <% for (let funcion of permisos) { %>
+                                <% if (funcion.funcion == 'crear_post') { %>
+                                <button class="button is-danger is-light"
+                                    onclick="eliminar('<%= insta_post.IDInsta_Post %>')">
+                                    Eliminar
+                                </button>
+                                <% } %>
+                                <% } %>`
+                             html += `</div>
+                        </div>
+                    </div>
+                </div>`
+
+                if (columns % 4 == 0) {
+                    html += `
+            </div>
+            <div class="columns">`
+                }
+            };
+            html += '</div>';
+
+            document.getElementById('respuesta_ajax').innerHTML = html;
+        }).catch(err => {
+            console.log(err);
+        });
+    };
 </script>
 </body>
 
