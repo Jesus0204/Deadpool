@@ -84,7 +84,7 @@ exports.post_delete = (request, response, next) => {
 
 };
 
-exports.get_groot = (request, response, next) => {
+exports.get_minion = (request, response, next) => {
     response.render('minion', {
         username: request.session.username || '',
         permisos: request.session.permisos || [],

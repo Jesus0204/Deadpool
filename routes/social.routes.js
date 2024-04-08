@@ -20,7 +20,7 @@ router.post('/instagram/delete', isAuth, canCreate_Post, socialController.post_d
 router.get('/instagram/:insta_id', isAuth, socialController.get_instagram);
 router.get('/instagram/', isAuth, socialController.get_instagram);
 router.get('/trailer', socialController.get_trailer);
-router.get('/minion', isAuth, socialController.get_groot);
+router.get('/minion', isAuth, socialController.get_minion);
 router.post('/minion/translate', socialController.post_translation);
 
 // Con esta linea se permite que se exporte en el principal
