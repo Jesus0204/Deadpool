@@ -83,3 +83,34 @@ exports.post_delete = (request, response, next) => {
         })
 
 };
+
+exports.get_groot = (request, response, next) => {
+    response.render('minion', {
+        username: request.session.username || '',
+        permisos: request.session.permisos || [],
+        csrfToken: request.csrfToken(), 
+        traduccion_obtenida: false
+    })
+};
+
+exports.post_translation = (request, response, next) => {
+    fetch('https://api.funtranslations.com/translate/minion.json', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            text: request.body.traduccion
+        })
+    }).then(result => {
+        return result.json(); 
+    }).then((data) => {
+        response.render('minion', {
+            username: request.session.username || '',
+            permisos: request.session.permisos || [],
+            csrfToken: request.csrfToken(),
+            traduccion_obtenida: true, 
+            traduccion: data.contents.translated
+        })
+    })
+};

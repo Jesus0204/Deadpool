@@ -1,0 +1,37 @@
+<%- include('includes/head.ejs', {
+  username: username,
+  permisos: permisos 
+}) %>
+
+<section class="section">
+    <div class="container">
+        <h1 id="title" class="title">Traduce para hablar con un Minion!</h1>
+        <img
+            src="https://www.slashfilm.com/img/gallery/what-the-minionese-in-the-minions-movies-means/l-intro-1656470635.jpg">
+        <% if (traduccion_obtenida == false)  { %> 
+        <form action="/social/minion/translate" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <label class="label" for="traduccion">Mensaje a Traducir:</label>
+            <input name="traduccion" class="input" type="text" id="text"><br><br>
+            <input class="button is-link" type="submit" value="Traducir Mensaje">
+        </form>
+        <% } else { %>
+            <p>La traducción a tu mensaje es en Minion es: 
+                <strong>
+                    <%= traduccion %>
+                </strong>
+            </p>
+        <% } %>
+    </div>
+     <br>
+     <div class="block">
+         <figure>
+             <img id="imagen_disparar" src="">
+         </figure>
+     </div>
+</section>
+
+<%- include('includes/foot.ejs') %>
+</body>
+
+</html>
